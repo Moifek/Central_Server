@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YesSIMobileModels", "YesSIMobileModels.csproj", "{C8AD957E-DBB8-4EAA-A9F7-55CAE251463B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YesSIMobileAPI", "..\YesSIMobileAPI\YesSIMobileAPI.csproj", "{3C14A900-FFF4-4213-9C5C-8837F3F3FBA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8AD957E-DBB8-4EAA-A9F7-55CAE251463B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8AD957E-DBB8-4EAA-A9F7-55CAE251463B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8AD957E-DBB8-4EAA-A9F7-55CAE251463B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8AD957E-DBB8-4EAA-A9F7-55CAE251463B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C14A900-FFF4-4213-9C5C-8837F3F3FBA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C14A900-FFF4-4213-9C5C-8837F3F3FBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C14A900-FFF4-4213-9C5C-8837F3F3FBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C14A900-FFF4-4213-9C5C-8837F3F3FBA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBF132C3-7081-48CA-9088-7075100F441A}
+	EndGlobalSection
+EndGlobal

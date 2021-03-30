@@ -1,0 +1,20 @@
+﻿@page "/signin"
+@inherits SignInBase
+@inject NavigationManager NavigationManager
+
+
+<div class="sign-form">
+    <p class="welcome-text">Hello @(string.IsNullOrEmpty(User.UserName) ? "User" : User.UserName) - Today is @Day</p>
+    @*<input type="text" class="sign-input form-control" placeholder="Username" @oninput="HandleUserNameChanged" />*@
+    <EditForm Model="User" OnValidSubmit="@HandleLogin">
+        <DataAnnotationsValidator />
+        <ValidationInput @bind-value="@User.UserName" PlaceHolder="UserName"></ValidationInput>
+        <ValidationInput @bind-value="@User.Password" PlaceHolder="Password"></ValidationInput>
+        @*<input type="password" class="sign-input form-control" placeholder="password" required />*@
+        <ValidationSummary />
+        <button class="sign-button btn btn-primary" type="submit">Sign in</button>
+    </EditForm>
+    <div class="signup">
+        <a href="/signup">Sign up</a>
+    </div>
+</div>

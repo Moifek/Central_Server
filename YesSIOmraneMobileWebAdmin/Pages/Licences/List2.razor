@@ -1,0 +1,50 @@
+﻿@using YesSIMobileModels.Models
+@page "/List2"
+
+<div class="mynavbar">
+    <a style="color:whitesmoke;">SICOGI</a>
+    <div class="mydropdown">
+        <button class="mydropbtn" @onclick="DropMenuOnClick">
+            text
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="mydropdown-content" @ref="myDropDownMenu" id="myDropdown">
+            <div class="myheader">
+                <h2>Mega Menu</h2>
+            </div>
+            <div class="myrow">
+                <div class="mycolumn">
+                    <h3>Licensee</h3>
+                    <p>License:</p>
+                    <p>Activated Since:</p>
+                    <p>Expires at:</p>
+                </div>
+                <div class="mycolumn">
+                    <h3>Mobile Info</h3>
+                    <p>Admin :</p>
+                    <p>Admin-Email :</p>
+                    <p>test</p>
+                </div>
+                <div class="mycolumn">
+                    <h3>Mobile App Info</h3>
+                    <p>Maximum Users :</p>
+                    <p>Active Users :</p>
+                    <p>test:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+@code{
+
+    ElementReference myDropDownMenu;
+
+    private async Task DropMenuOnClick()
+    {
+        Console.WriteLine("reach");
+
+    }
+
+}
