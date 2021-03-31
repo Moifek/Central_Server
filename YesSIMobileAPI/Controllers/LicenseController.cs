@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using System.Net.Http;
+using System.Net;
 
 namespace YesSIMobileAPI.Controllers
 {
@@ -71,7 +72,7 @@ namespace YesSIMobileAPI.Controllers
         public IActionResult GetHasLicense(Guid id)
         {
 
-            var verif = _IAdmLicense.InstallLicense(id);
+            var verif = _IAdmLicense.CheckLicense(id);
 
             
             if (verif == 0)
@@ -101,6 +102,12 @@ namespace YesSIMobileAPI.Controllers
             {
                 return BadRequest("not logged successfully");
             }
+        }
+
+        [HttpPost (nameof(AddProspection))]
+        public HttpStatusCode AddProspection(AddProspectionModel Model, string pkey)
+        {
+          return _IAdmLicense.AddProspection(Model, pkey);
         }
 
     }

@@ -31,7 +31,7 @@ namespace YesSIMobileAPI.Controllers
                 return BadRequest("Invalid request");
             }
 
-            int verif_License = _admLicenseData.InstallLicense(pkey);
+            int verif_License = _admLicenseData.CheckLicense(pkey);
             if (verif_License == 2)
             {
                 return StatusCode(402);

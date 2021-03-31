@@ -24,7 +24,7 @@ namespace YesSIMobileAPI.Data
             _Context1 = db4;
         }
 
-        public int InstallLicense(Guid id)
+        public int CheckLicense(Guid id)
         {
            
                 AdmLicense query = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == id);
@@ -80,6 +80,7 @@ namespace YesSIMobileAPI.Data
 
         public async Task<Guid?> AddSession(string Token, List<AdmUser> user, string[] info, Guid License)
         {
+
             AdmLicense _AdmLicense = _Context1.AdmLicenses.Find(License);
             AdmAppSession Session = new();
             AdmUser _User = user.FirstOrDefault();
@@ -161,5 +162,20 @@ namespace YesSIMobileAPI.Data
                 }
 
             }
+        public HttpStatusCode AddProspection(AddProspectionModel Model, string pkey)
+        {
+            
+            if (CheckLicense(Guid.Parse(pkey)) == 0)
+            {
+                string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
+                var Status = (api.PostSerializedProspections(url + "AddProspection", Model));
+                if(Status.IsCompletedSuccessfully)
+                {
+                    return Status.Result;
+                }
+                return Status.Result;
+            }
+            return HttpStatusCode.BadRequest;
+        }
     }
 }

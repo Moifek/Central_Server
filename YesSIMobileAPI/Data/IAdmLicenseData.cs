@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using YesSIMobileAPI.Models;
 using YesSIMobileModels.Models2;
@@ -17,13 +18,15 @@ namespace YesSIMobileAPI.Data
 
         AdmLicense VerifLicense2(Guid pkey, string name);
 
-        int InstallLicense(Guid id);
+        int CheckLicense(Guid id);
 
         IEnumerable<AdmLicense> GetLicenses();
 
         Task<Guid?> AddSession(string Token, List<AdmUser> user, string[] info, Guid license);
 
-        public Task<bool> Disconnect(Guid pkey);
+        Task<bool> Disconnect(Guid pkey);
+
+        HttpStatusCode AddProspection(AddProspectionModel Model, string pkey)
 
     }
 
