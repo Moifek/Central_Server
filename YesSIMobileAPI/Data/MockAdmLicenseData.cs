@@ -177,5 +177,16 @@ namespace YesSIMobileAPI.Data
             }
             return HttpStatusCode.BadRequest;
         }
+
+        public List<ComProspectionOrigin> GetOrigin(string pkey)
+        {
+          string url =  _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
+            return api.GetDeserializedComOrigins(url+"GetComOrigins");
+        }
+        public List<ComProspectionKind> GetKinds(string pkey)
+        {
+            string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
+            return api.GetDeserializedComKinds(url + "GetComKinds");
+        }
     }
 }

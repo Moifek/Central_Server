@@ -110,5 +110,27 @@ namespace YesSIMobileAPI.Controllers
           return _IAdmLicense.AddProspection(Model, pkey);
         }
 
+        [HttpGet (nameof(GetOrigins))]
+        public IActionResult GetOrigins(string pkey)
+        {
+            List<ComProspectionOrigin> Origins = _IAdmLicense.GetOrigin(pkey);
+            if (!(Origins is null))
+            {
+                return NotFound(Origins);
+            }
+            return Ok(Origins);
+        }
+
+        [HttpGet(nameof(GetProspectionKinds))]
+        public IActionResult GetProspectionKinds(string pkey)
+        {
+            List<ComProspectionKind> Kinds = _IAdmLicense.GetKinds(pkey);
+            if (!(Kinds is null))
+            {
+                return NotFound(Kinds);
+            }
+            return Ok(Kinds);
+        }
+
     }
 }

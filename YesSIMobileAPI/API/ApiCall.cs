@@ -42,6 +42,33 @@ namespace YesSIMobileAPI.API
             }
         }
 
+        public List<ComProspectionKind> GetDeserializedComKinds(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<List<ComProspectionKind>>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<ComProspectionKind>>(response.Content);
+            }
+        }
+
+        public List<ComProspectionOrigin> GetDeserializedComOrigins(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<List<ComProspectionOrigin>>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<ComProspectionOrigin>>(response.Content);
+            }
+        }
+
+
         public async Task<HttpStatusCode> PostSerializedProspections(string url, AddProspectionModel Prospections)
         {
             this.Client = new RestClient(url);

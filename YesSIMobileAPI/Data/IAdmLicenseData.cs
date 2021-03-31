@@ -26,7 +26,11 @@ namespace YesSIMobileAPI.Data
 
         Task<bool> Disconnect(Guid pkey);
 
-        HttpStatusCode AddProspection(AddProspectionModel Model, string pkey)
+        HttpStatusCode AddProspection(AddProspectionModel Model, string pkey);
+
+        List<ComProspectionOrigin> GetOrigin(string pkey);
+
+        List<ComProspectionKind> GetKinds(string pkey);
 
     }
 
