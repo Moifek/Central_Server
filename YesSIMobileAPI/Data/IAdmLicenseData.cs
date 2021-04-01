@@ -31,6 +31,10 @@ namespace YesSIMobileAPI.Data
         List<ComProspectionOrigin> GetOrigin(string pkey);
 
         List<ComProspectionKind> GetKinds(string pkey);
+        List<AdmTierTitle> GetAdmTitle(string pkey);
+        List<CfgTranche> GetCfgTranche(string pkey);
+        List<StkItemCategory> GetStkItemCategories(string pkey);
+        List<StkItemType> GetStkItemTypes(string pkey);
 
         List<ComProspection> SearchProspections(string Criteria,string pkey);
 

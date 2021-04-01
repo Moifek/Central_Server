@@ -110,8 +110,8 @@ namespace YesSIMobileAPI.Controllers
           return _IAdmLicense.AddProspection(Model, pkey);
         }
 
-        [HttpGet (nameof(GetOrigins)), Authorize]
-        public IActionResult GetOrigins(string pkey)
+        [HttpGet (nameof(GetProspectionOrigins)), Authorize]
+        public IActionResult GetProspectionOrigins(string pkey)
         {
             List<ComProspectionOrigin> Origins = _IAdmLicense.GetOrigin(pkey);
             if (!(Origins is null))
@@ -132,6 +132,50 @@ namespace YesSIMobileAPI.Controllers
             return Ok(Kinds);
         }
 
+        [HttpGet(nameof(GetAdmTitles)), Authorize]
+        public IActionResult GetAdmTitles(string pkey)
+        {
+            List<AdmTierTitle> Kinds = _IAdmLicense.GetAdmTitle(pkey);
+            if (!(Kinds is null))
+            {
+                return NotFound(Kinds);
+            }
+            return Ok(Kinds);
+        }
+
+        [HttpGet(nameof(GetCfgTranches)), Authorize]
+        public IActionResult GetCfgTranches(string pkey)
+        {
+            List<CfgTranche> Kinds = _IAdmLicense.GetCfgTranche(pkey);
+            if (!(Kinds is null))
+            {
+                return NotFound(Kinds);
+            }
+            return Ok(Kinds);
+        }
+
+        [HttpGet(nameof(GetStkItemCategories)), Authorize]
+        public IActionResult GetStkItemCategories(string pkey)
+        {
+            List<StkItemCategory> Kinds = _IAdmLicense.GetStkItemCategories(pkey);
+            if (!(Kinds is null))
+            {
+                return NotFound(Kinds);
+            }
+            return Ok(Kinds);
+        }
+
+        [HttpGet(nameof(GetStkItemTypes)), Authorize]
+        public IActionResult GetStkItemTypes(string pkey)
+        {
+            List<StkItemType> Kinds = _IAdmLicense.GetStkItemTypes(pkey);
+            if (!(Kinds is null))
+            {
+                return NotFound(Kinds);
+            }
+            return Ok(Kinds);
+        }
+
         [HttpPost (nameof(SearchProspection)), Authorize]
         public IActionResult SearchProspection(string criteria, string pkey)
         {
@@ -141,6 +185,7 @@ namespace YesSIMobileAPI.Controllers
             }
             return Ok(_IAdmLicense.SearchProspections(criteria, pkey));
         }
+
 
     }
 }

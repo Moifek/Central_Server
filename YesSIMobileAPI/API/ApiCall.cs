@@ -81,6 +81,56 @@ namespace YesSIMobileAPI.API
             }
         }
 
+        public List<CfgTranche> GetDeserializedCfgTranche(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<List<CfgTranche>>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<CfgTranche>>(response.Content);
+            }
+        }
+        public List<AdmTierTitle> GetDeserializedTierTitle(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<List<AdmTierTitle>>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<AdmTierTitle>>(response.Content);
+            }
+        }
+        public List<StkItemCategory> GetDeserializedItemCategory(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<List<StkItemCategory>>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<StkItemCategory>>(response.Content);
+            }
+        }
+        public List<StkItemType> GetDeserializedItemType(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<List<StkItemType>>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<StkItemType>>(response.Content);
+            }
+        }
+
+
 
         public async Task<HttpStatusCode> PostSerializedProspections(string url, AddProspectionModel Prospections)
         {

@@ -178,6 +178,7 @@ namespace YesSIMobileAPI.Data
             return HttpStatusCode.BadRequest;
         }
 
+
         public List<ComProspectionOrigin> GetOrigin(string pkey)
         {
           string url =  _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
@@ -193,6 +194,30 @@ namespace YesSIMobileAPI.Data
         {
             string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
             return api.GetDeserializedComProspections(url + "SearchProspectionList", Criteria);
+        }
+
+        public List<AdmTierTitle> GetAdmTitle(string pkey)
+        {
+            string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
+            return api.GetDeserializedTierTitle(url+ "GetAdmTierTitle");
+        }
+
+        public List<CfgTranche> GetCfgTranche(string pkey)
+        {
+            string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
+            return api.GetDeserializedCfgTranche(url + "GetCfgTranche");
+        }
+
+        public List<StkItemCategory> GetStkItemCategories(string pkey)
+        {
+            string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
+            return api.GetDeserializedItemCategory(url + "GetStkItemCategory");
+        }
+
+        public List<StkItemType> GetStkItemTypes(string pkey)
+        {
+            string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
+            return api.GetDeserializedItemType(url+"GetStkItemTypes");
         }
     }
 }
