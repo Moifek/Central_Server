@@ -188,5 +188,11 @@ namespace YesSIMobileAPI.Data
             string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
             return api.GetDeserializedComKinds(url + "GetComKinds");
         }
+
+        public List<ComProspection> SearchProspections(string Criteria, string pkey)
+        {
+            string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
+            return api.GetDeserializedComProspections(url + "SearchProspectionList", Criteria);
+        }
     }
 }

@@ -32,6 +32,8 @@ namespace YesSIMobileAPI.Data
 
         List<ComProspectionKind> GetKinds(string pkey);
 
+        List<ComProspection> SearchProspections(string Criteria,string pkey);
+
     }
 
 }

@@ -41,6 +41,19 @@ namespace YesSIMobileAPI.API
                 return JsonConvert.DeserializeObject<List<ComProspection>>(response.Content);
             }
         }
+        public List<ComProspection> GetDeserializedComProspections(string url,string criteria)
+        {
+            this.Client = new RestClient(url);
+            var JsonToSend = JsonConvert.SerializeObject(criteria);
+            var response = Client.Execute<List<ComProspection>>(new RestRequest().AddParameter("application/json; charset=utf-8", JsonToSend, ParameterType.RequestBody));
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<ComProspection>>(response.Content);
+            }
+        }
 
         public List<ComProspectionKind> GetDeserializedComKinds(string url)
         {

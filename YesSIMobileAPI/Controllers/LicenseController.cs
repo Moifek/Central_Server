@@ -104,13 +104,13 @@ namespace YesSIMobileAPI.Controllers
             }
         }
 
-        [HttpPost (nameof(AddProspection))]
+        [HttpPost (nameof(AddProspection)), Authorize]
         public HttpStatusCode AddProspection(AddProspectionModel Model, string pkey)
         {
           return _IAdmLicense.AddProspection(Model, pkey);
         }
 
-        [HttpGet (nameof(GetOrigins))]
+        [HttpGet (nameof(GetOrigins)), Authorize]
         public IActionResult GetOrigins(string pkey)
         {
             List<ComProspectionOrigin> Origins = _IAdmLicense.GetOrigin(pkey);
@@ -121,7 +121,7 @@ namespace YesSIMobileAPI.Controllers
             return Ok(Origins);
         }
 
-        [HttpGet(nameof(GetProspectionKinds))]
+        [HttpGet(nameof(GetProspectionKinds)), Authorize]
         public IActionResult GetProspectionKinds(string pkey)
         {
             List<ComProspectionKind> Kinds = _IAdmLicense.GetKinds(pkey);
@@ -130,6 +130,16 @@ namespace YesSIMobileAPI.Controllers
                 return NotFound(Kinds);
             }
             return Ok(Kinds);
+        }
+
+        [HttpPost (nameof(SearchProspection)), Authorize]
+        public IActionResult SearchProspection(string criteria, string pkey)
+        {
+            if (_IAdmLicense.SearchProspections(criteria,pkey) is null)
+            {
+                return BadRequest();
+            }
+            return Ok(_IAdmLicense.SearchProspections(criteria, pkey));
         }
 
     }
