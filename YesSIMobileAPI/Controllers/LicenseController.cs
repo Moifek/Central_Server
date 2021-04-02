@@ -114,7 +114,7 @@ namespace YesSIMobileAPI.Controllers
         public IActionResult GetProspectionOrigins(string pkey)
         {
             List<ComProspectionOrigin> Origins = _IAdmLicense.GetOrigin(pkey);
-            if (!(Origins is null))
+            if ((Origins is null))
             {
                 return NotFound(Origins);
             }
@@ -125,7 +125,7 @@ namespace YesSIMobileAPI.Controllers
         public IActionResult GetProspectionKinds(string pkey)
         {
             List<ComProspectionKind> Kinds = _IAdmLicense.GetKinds(pkey);
-            if (!(Kinds is null))
+            if ((Kinds is null))
             {
                 return NotFound(Kinds);
             }
@@ -136,7 +136,7 @@ namespace YesSIMobileAPI.Controllers
         public IActionResult GetAdmTitles(string pkey)
         {
             List<AdmTierTitle> Kinds = _IAdmLicense.GetAdmTitle(pkey);
-            if (!(Kinds is null))
+            if ((Kinds is null))
             {
                 return NotFound(Kinds);
             }
@@ -147,7 +147,7 @@ namespace YesSIMobileAPI.Controllers
         public IActionResult GetCfgTranches(string pkey)
         {
             List<CfgTranche> Kinds = _IAdmLicense.GetCfgTranche(pkey);
-            if (!(Kinds is null))
+            if ((Kinds is null))
             {
                 return NotFound(Kinds);
             }
@@ -158,7 +158,7 @@ namespace YesSIMobileAPI.Controllers
         public IActionResult GetStkItemCategories(string pkey)
         {
             List<StkItemCategory> Kinds = _IAdmLicense.GetStkItemCategories(pkey);
-            if (!(Kinds is null))
+            if ((Kinds is null))
             {
                 return NotFound(Kinds);
             }
@@ -169,7 +169,7 @@ namespace YesSIMobileAPI.Controllers
         public IActionResult GetStkItemTypes(string pkey)
         {
             List<StkItemType> Kinds = _IAdmLicense.GetStkItemTypes(pkey);
-            if (!(Kinds is null))
+            if ((Kinds is null))
             {
                 return NotFound(Kinds);
             }

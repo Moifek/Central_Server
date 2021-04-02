@@ -78,12 +78,12 @@ namespace YesSIMobileAPI.Data
 
 
 
-        public async Task<Guid?> AddSession(string Token, List<AdmUser> user, string[] info, Guid License)
+        public async Task<Guid?> AddSession(string Token, AdmUser user, string[] info, Guid License)
         {
 
             AdmLicense _AdmLicense = _Context1.AdmLicenses.Find(License);
             AdmAppSession Session = new();
-            AdmUser _User = user.FirstOrDefault();
+            AdmUser _User = user;
             Session.AppVersion = "1.0";
             Session.Jwtoken = Token;
             Session.Pkey = Guid.NewGuid();
@@ -116,7 +116,7 @@ namespace YesSIMobileAPI.Data
             return _Context1.AdmLicenses.ToList();
         }
 
-        public List<AdmUser> VerifLicense(Guid pkey, string name, string pwd)
+        public AdmUser VerifLicense(Guid pkey, string name, string pwd)
         {
             var License = _Context1.AdmLicenses.Find(pkey);
             if (License != null)

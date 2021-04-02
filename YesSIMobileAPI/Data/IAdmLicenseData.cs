@@ -14,7 +14,7 @@ namespace YesSIMobileAPI.Data
     {
         List<ComProspection> GetProspection(Guid pkey);
 
-        List<AdmUser> VerifLicense(Guid pkey, string name, string pwd);
+        AdmUser VerifLicense(Guid pkey, string name, string pwd);
 
         AdmLicense VerifLicense2(Guid pkey, string name);
 
@@ -22,7 +22,7 @@ namespace YesSIMobileAPI.Data
 
         IEnumerable<AdmLicense> GetLicenses();
 
-        Task<Guid?> AddSession(string Token, List<AdmUser> user, string[] info, Guid license);
+        Task<Guid?> AddSession(string Token, AdmUser user, string[] info, Guid license);
 
         Task<bool> Disconnect(Guid pkey);
 

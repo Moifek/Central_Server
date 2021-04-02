@@ -38,7 +38,7 @@ namespace YesSIMobileAPI.Controllers
             }
             else {
 
-                List<AdmUser> verif = _admLicenseData.VerifLicense(pkey, user.Code, user.Pass);
+                AdmUser verif = _admLicenseData.VerifLicense(pkey, user.Code, user.Pass);
 
                 if (verif != null)
                 {
@@ -56,7 +56,7 @@ namespace YesSIMobileAPI.Controllers
                     string[] info = { "test", "test" };
 
                     var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                    Guid? SessionPkey = _admLicenseData.AddSession(tokenString, verif , info, pkey).Result;
+                    Guid? SessionPkey = _admLicenseData.AddSession(tokenString, verif, info, pkey).Result;
                     if(SessionPkey != null)
                     {
                         return Ok(new { Token = tokenString, user = verif, Session = SessionPkey });

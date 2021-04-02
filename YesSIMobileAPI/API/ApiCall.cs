@@ -14,10 +14,10 @@ namespace YesSIMobileAPI.API
     {
         RestClient Client;
 
-        public List<AdmUser> GetDeserializedReleases(string url)
+        public AdmUser GetDeserializedReleases(string url)
         {
             this.Client = new RestClient(url);
-            var response = Client.Execute<List<AdmUser>>(new RestRequest());
+            var response = Client.Execute<AdmUser>(new RestRequest());
 
             if (response.Content == "") { return null; }
 
