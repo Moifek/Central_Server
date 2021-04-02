@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 #nullable disable
 
 namespace YesSIMobileModels.Models2
 {
+    [JsonObject(MemberSerialization.OptIn)]
     [Table("StkItemType")]
     public partial class StkItemType
     {
@@ -27,11 +29,14 @@ namespace YesSIMobileModels.Models2
         }
 
         [Key]
+        [JsonProperty]
         [Column("PKey")]
         public Guid Pkey { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string Code { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string Description { get; set; }
         public bool? ForUnderItem { get; set; }
         public Guid StkKindId { get; set; }

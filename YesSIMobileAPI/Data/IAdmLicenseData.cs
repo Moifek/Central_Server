@@ -38,6 +38,8 @@ namespace YesSIMobileAPI.Data
 
         List<ComProspection> SearchProspections(string Criteria,string pkey);
 
+
+
     }
 
 }
