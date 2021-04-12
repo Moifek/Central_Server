@@ -179,11 +179,12 @@ namespace YesSIMobileAPI.Controllers
         [HttpPost (nameof(SearchProspection)), Authorize]
         public IActionResult SearchProspection(string criteria, string pkey)
         {
-            if (_IAdmLicense.SearchProspections(criteria,pkey) is null)
+            var Search = _IAdmLicense.SearchProspections(criteria, pkey);
+            if (Search is null)
             {
                 return BadRequest();
             }
-            return Ok(_IAdmLicense.SearchProspections(criteria, pkey));
+            return Ok(Search);
         }
 
 
