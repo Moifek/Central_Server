@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 #nullable disable
 
 namespace YesSIMobileModels.Models2
 {
+    [JsonObject(MemberSerialization.OptIn)]
     [Table("ComProspection")]
     [Index(nameof(CfgProspectId), Name = "_dta_index_ComProspection_5_322100188__K9_65")]
     [Index(nameof(Pkey), Name = "_dta_index_ComProspection_7_322100188__K1_2")]
@@ -29,6 +31,7 @@ namespace YesSIMobileModels.Models2
         }
 
         [Key]
+        [JsonProperty]
         [Column("PKey")]
         public Guid Pkey { get; set; }
         [Column(TypeName = "datetime")]
@@ -42,6 +45,7 @@ namespace YesSIMobileModels.Models2
         public Guid? ComProspectionOriginId { get; set; }
         public Guid? CfgProspectId { get; set; }
         [StringLength(1000)]
+        [JsonProperty]
         public string Notes { get; set; }
         [Column(TypeName = "decimal(26, 6)")]
         public decimal? AreaTo { get; set; }
@@ -56,8 +60,10 @@ namespace YesSIMobileModels.Models2
         [Column(TypeName = "decimal(26, 6)")]
         public decimal? FundingOther { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string UserCreate { get; set; }
         [Column(TypeName = "datetime")]
+        [JsonProperty]
         public DateTime? UserCreateDateTime { get; set; }
         [StringLength(255)]
         public string UserUpdate { get; set; }
@@ -69,9 +75,13 @@ namespace YesSIMobileModels.Models2
         public DateTime? AlertValidityDate { get; set; }
         [StringLength(255)]
         public string AlertMessage { get; set; }
+        [JsonProperty]
         public Guid? CfgCommercialId { get; set; }
+        [JsonProperty]
         public Guid? StkHierarchyId { get; set; }
+        [JsonProperty]
         public Guid? StkItemId { get; set; }
+        [JsonProperty]
         public bool? IsClosed { get; set; }
         [StringLength(255)]
         public string Code { get; set; }
@@ -151,18 +161,22 @@ namespace YesSIMobileModels.Models2
         public virtual ComProspectionClosingReason ComProspectionClosingReason { get; set; }
         [ForeignKey(nameof(ComProspectionKindId))]
         [InverseProperty("ComProspections")]
+        [JsonProperty]
         public virtual ComProspectionKind ComProspectionKind { get; set; }
         [ForeignKey(nameof(ComProspectionOriginId))]
         [InverseProperty("ComProspections")]
+        [JsonProperty]
         public virtual ComProspectionOrigin ComProspectionOrigin { get; set; }
         [ForeignKey(nameof(ComProspectionOriginSupportId))]
         [InverseProperty("ComProspections")]
         public virtual ComProspectionOriginSupport ComProspectionOriginSupport { get; set; }
         [ForeignKey(nameof(StkHierarchyId))]
         [InverseProperty(nameof(CfgTranche.ComProspections))]
+        [JsonProperty]
         public virtual CfgTranche StkHierarchy { get; set; }
         [ForeignKey(nameof(StkItemId))]
         [InverseProperty("ComProspections")]
+        [JsonProperty]
         public virtual StkItem StkItem { get; set; }
         [ForeignKey(nameof(StkVocationId))]
         [InverseProperty("ComProspections")]

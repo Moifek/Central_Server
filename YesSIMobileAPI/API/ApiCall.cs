@@ -29,16 +29,16 @@ namespace YesSIMobileAPI.API
                  
         }
 
-        public List<ComProspection> GetDeserializedComProspections(string url)
+        public List<AddProspectionModel> GetDeserializedComProspections(string url)
         {
             this.Client = new RestClient(url);
-            var response = Client.Execute<List<ComProspection>>(new RestRequest());
+            var response = Client.Execute<List<AddProspectionModel>>(new RestRequest());
 
             if (response.Content == "") { return null; }
 
             else
             {
-                return JsonConvert.DeserializeObject<List<ComProspection>>(response.Content);
+                return JsonConvert.DeserializeObject<List<AddProspectionModel>>(response.Content);
             }
         }
         public List<ComProspection> GetDeserializedComProspections(string url,string criteria)

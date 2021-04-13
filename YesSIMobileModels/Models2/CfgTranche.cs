@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 #nullable disable
 
 namespace YesSIMobileModels.Models2
 {
+    [JsonObject(MemberSerialization.OptIn)]
     [Table("CfgTranche")]
     [Index(nameof(Pkey), nameof(CfgProjectId), nameof(Description), Name = "_dta_index_CfgTranche_5_1081770911__K1_K14_K3")]
     [Index(nameof(Description), nameof(IsForRent), Name = "_dta_index_CfgTranche_5_1081770911__K3_K33_1_2_4_5_6_7_8_9_10_11_12_13_14_15_16_17_18_19_20_21_22_23_24_25_26_27_28_29_30_31_")]
@@ -52,13 +54,17 @@ namespace YesSIMobileModels.Models2
         }
 
         [Key]
+
         [Column("PKey")]
+        [JsonProperty]
         public Guid Pkey { get; set; }
         [StringLength(255)]
         public string Code { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string Description { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string Address { get; set; }
         [StringLength(255)]
         public string Email { get; set; }

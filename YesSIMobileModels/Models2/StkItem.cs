@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 #nullable disable
 
@@ -28,6 +29,7 @@ namespace YesSIMobileModels.Models2
     [Index(nameof(ParentId), nameof(IsUnderItemOrigin), nameof(Area), Name = "_dta_index_StkItem_7_1936725952__K47_K92_K5")]
     [Index(nameof(StkHierarchyId), nameof(Pkey), Name = "_dta_index_StkItem_7_1936725952__K78_K1")]
     [Index(nameof(StkHierarchyId), nameof(StkPresentationTypeId), nameof(Pkey), nameof(StkBuildingId), nameof(StkItemTypeId), nameof(StkItemCategoryId), Name = "_dta_index_StkItem_7_1936725952__K78_K64_K1_K73_K48_K49_72")]
+    [JsonObject(MemberSerialization.OptIn)]
     public partial class StkItem
     {
         public StkItem()
@@ -64,6 +66,7 @@ namespace YesSIMobileModels.Models2
         [Column("PKey")]
         public Guid Pkey { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string Code { get; set; }
         [StringLength(255)]
         public string Description { get; set; }

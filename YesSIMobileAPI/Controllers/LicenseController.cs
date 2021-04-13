@@ -186,6 +186,12 @@ namespace YesSIMobileAPI.Controllers
             }
             return Ok(Search);
         }
+        
+        [HttpPut (nameof(UpdateProspection)), Authorize]
+        public IActionResult UpdateProspection(AddProspectionModel Model , string pkey)
+        {
+            return null;
+        }
 
 
     }

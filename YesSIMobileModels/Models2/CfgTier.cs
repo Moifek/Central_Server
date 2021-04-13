@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 #nullable disable
 
 namespace YesSIMobileModels.Models2
 {
+    [JsonObject(MemberSerialization.OptIn)]
     [Table("CfgTier")]
     [Index(nameof(Pkey), Name = "_dta_index_CfgTier_5_930102354__K1_2_4")]
     [Index(nameof(Pkey), Name = "_dta_index_CfgTier_5_930102354__K1_4_5_9")]
@@ -159,10 +161,13 @@ namespace YesSIMobileModels.Models2
 
         [Key]
         [Column("PKey")]
+        [JsonProperty]
         public Guid Pkey { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string Code { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string Description { get; set; }
         [StringLength(30)]
         public string Phone { get; set; }
@@ -196,8 +201,10 @@ namespace YesSIMobileModels.Models2
         [StringLength(255)]
         public string FiscalDouane { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string FirstName { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string LastName { get; set; }
         [StringLength(255)]
         public string BirthPlace { get; set; }
@@ -223,6 +230,7 @@ namespace YesSIMobileModels.Models2
         public string IdvalidatePlace { get; set; }
         public bool? IsProspect { get; set; }
         public Guid? CfgBankId { get; set; }
+        [JsonProperty]
         public Guid? CfgCommercialId { get; set; }
         public Guid? CfgContactId { get; set; }
         [StringLength(255)]
@@ -230,6 +238,7 @@ namespace YesSIMobileModels.Models2
         public Guid? CfgTierTypeId { get; set; }
         public Guid? CfgTierKindId { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string UserCreate { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? UserCreateDateTime { get; set; }
@@ -237,6 +246,7 @@ namespace YesSIMobileModels.Models2
         public string UserUpdate { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? UserUpdateDateTime { get; set; }
+        [JsonProperty]
         public Guid? AdmTierTitleId { get; set; }
         [StringLength(255)]
         public string FatherName { get; set; }

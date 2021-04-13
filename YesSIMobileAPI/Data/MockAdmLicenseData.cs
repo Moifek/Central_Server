@@ -132,7 +132,7 @@ namespace YesSIMobileAPI.Data
             }
         }
 
-        public List<ComProspection> GetProspection(Guid id)
+        public List<AddProspectionModel> GetProspection(Guid id)
         {
             var License = _Context1.AdmLicenses.Find(id);
             if (License != null)

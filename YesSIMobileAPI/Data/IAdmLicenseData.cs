@@ -12,7 +12,7 @@ namespace YesSIMobileAPI.Data
 {
     public interface IAdmLicenseData
     {
-        List<ComProspection> GetProspection(Guid pkey);
+        List<AddProspectionModel> GetProspection(Guid pkey);
 
         AdmUser VerifLicense(Guid pkey, string name, string pwd);
 
