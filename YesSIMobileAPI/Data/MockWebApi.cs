@@ -49,11 +49,11 @@ namespace YesSIMobileAPI.Data
             {
                 AdmUser query = _Context1.AdmUsers.FirstOrDefault(a => a.Email == user.UserName);
 
-                if (query == null)
+                if (query is null)
                 {
                     return 1;
                 }
-                else if (query.Pass == user.Password)
+                if (query.Pass == user.Password)
                 {
                     return 0;
                 }
@@ -68,9 +68,84 @@ namespace YesSIMobileAPI.Data
             throw new NotImplementedException();
         }
 
-        public AdmLicense VerifLicense2(Guid pkey, string name)
+        public bool AddProspection(string DateExpired, string MobileUsers, string ServerURL, string Description, string AdminEmail)
         {
-            throw new NotImplementedException();
+            try
+            {
+                AdmLicense License = new();
+                License.ServerUrl = ServerURL;
+                License.Pkey = Guid.NewGuid();
+                License.DateActivated = DateTime.Now;
+                License.ExpireDate = DateTime.Parse(DateExpired);
+                License.AdmUserEmail = AdminEmail;
+                try
+                {
+                    License.AdmUserId = _Context1.AdmUsers.FirstOrDefault(a => a.Email == AdminEmail).Pkey;
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
+               
+                License.UserNumber = int.Parse(MobileUsers);
+                License.Description = Description;
+
+                _Context1.Add(License);
+                _Context1.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            
+            
+        }
+
+        public AdmLicense GetSpecificLicense(string pkey)
+        {
+            try
+            {
+                return _Context1.AdmLicenses.Find(Guid.Parse(pkey));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
+            
+        }
+
+        public bool UpdateLicense(string pkey, string DateExpired, string MobileUsers, string ServerURL, string Description, string AdminEmail)
+        {
+            try
+            {
+                AdmLicense OldLicense = _Context1.AdmLicenses.Find(Guid.Parse(pkey));
+                OldLicense.Description = Description;
+                OldLicense.ExpireDate = Convert.ToDateTime(DateExpired);
+                OldLicense.UserNumber = int.Parse(MobileUsers);
+                OldLicense.ServerUrl = ServerURL;
+                OldLicense.AdmUserEmail=AdminEmail;
+                try
+                {
+                    OldLicense.AdmUserId = _Context1.AdmUsers.FirstOrDefault(a => a.Email == AdminEmail).Pkey;
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
+
+
+                _Context1.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

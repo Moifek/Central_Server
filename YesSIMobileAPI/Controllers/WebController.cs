@@ -51,9 +51,12 @@ namespace YesSIMobileAPI.Controllers
 
         [HttpPost]
         [Route("GetUserLogin")]
-        public IActionResult Get([FromBody]User user)
+        public IActionResult Get(string Password, string UserName)
         {
-            if (_IAdmWebData.UserAvailable(user) == 0) { return Ok(); }
+            User user = new();
+            user.UserName = UserName;
+            user.Password = Password;
+            if (_IAdmWebData.UserAvailable(user) == 0) { return Ok("Login"); }
             if (_IAdmWebData.UserAvailable(user) == 1) { return Unauthorized(); }
             if (_IAdmWebData.UserAvailable(user) == 2) { return Unauthorized(); }
             else { return Forbid(); }
@@ -105,11 +108,43 @@ namespace YesSIMobileAPI.Controllers
         //}
 
 
-        [HttpPost]
-        [AllowAnonymous]
-        public IActionResult Post()
+        [HttpPost (nameof(CreateLicense))]
+        public IActionResult CreateLicense(string DateExpired, string MobileUsers, string ServerURL, string Description, string AdminEmail)
         {
-            return null;
+            var result = _IAdmWebData.AddProspection(DateExpired, MobileUsers, ServerURL, Description, AdminEmail);
+            if (result is false){
+                return Unauthorized("Admin E-mail not found or bad request"); 
+            }
+            return Ok(result);
+            
+        }
+
+        [HttpGet(nameof(GetSpecificLicense))]
+        public IActionResult GetSpecificLicense(string pkey)
+        {
+            var result = _IAdmWebData.GetSpecificLicense(pkey);
+            if (result is not null)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost(nameof(UpdateLicense))]
+        public IActionResult UpdateLicense(string pkey, string DateExpired, string MobileUsers, string ServerURL, string Description, string AdminEmail)
+        {
+            bool result = _IAdmWebData.UpdateLicense(pkey,DateExpired,MobileUsers,ServerURL,Description,AdminEmail);
+            if (result)
+            {
+                return Ok("updated Successfully !");
+            }
+            else
+            {
+                return BadRequest("Something wrong happend !");
+            }
         }
     }
 }

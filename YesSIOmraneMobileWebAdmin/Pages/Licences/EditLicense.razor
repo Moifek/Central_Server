@@ -1,0 +1,40 @@
+﻿@using YesSIMobileModels.Models
+@page "/editLicense/{LicenseID}"
+@inherits EditLicenseBase
+@inject NavigationManager NAV
+
+<h2>Edit</h2>
+<h4>License of @License.Description</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm Model="License" OnValidSubmit="@UpdateEmployee">
+            <DataAnnotationsValidator />
+            <div class="form-group">
+                <label for="Name" class="control-label">License Name (Description)</label>
+                <input for="Name" class="form-control" @bind-value="@License.Description" />
+            </div>
+            <div class="form-group">
+                <label asp-for="info" class="control-label">License Owner Email</label>
+                <input asp-for="info" class="form-control" @bind-value="@License.AdmUserEmail" />
+                <label asp-for="info" class="control-label">Mobile Users count</label>
+                <input asp-for="info" class="form-control" @bind-value="@License.UserNumber" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Department" class="control-label">Server Url</label>
+                <input asp-for="Department" class="form-control" @bind-value="@License.ServerUrl" />
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label">Date Expired</label>
+                <input asp-for="City" class="form-control" @bind-value="@License.ExpireDate" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" onclick="" class="btn btn-default" />
+                <input type="submit" value="Fill" class="btn" @onclick="OnIOnInitializedAsync" />
+            </div>
+        </EditForm>
+</div>
+</div>
+
+@code{
+}

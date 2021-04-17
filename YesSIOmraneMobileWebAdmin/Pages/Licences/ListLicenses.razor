@@ -18,7 +18,7 @@ else
         <thead>
             <tr>
                 <th>Pkey</th>
-                <th>Admin</th>
+                <th>Company</th>
                 <th>Admin Email</th>
                 <th>DB</th>
                 <th>Activated mobile users</th>
@@ -29,18 +29,18 @@ else
         <tbody>
             @foreach (var emp in List2)
             {
-                <tr>
-                    <td>@emp.Pkey</td>
-                    <td>@emp.AdmUser</td>
-                    <td>@emp.AdmUserEmail</td>
-                    <td>@emp.ServerUrl</td>
-                    <td>@emp.UserNumber</td>
-                    <td>@emp.DateActivated</td>
-                    <td>@emp.ExpireDate</td>
-                    <td>
-                        <a href='/editLicense/@emp.Pkey'>Edit</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>@emp.Pkey</td>
+                <td>@emp.Description</td>
+                <td>@emp.AdmUserEmail</td>
+                <td>@emp.ServerUrl</td>
+                <td><center>@emp.UserNumber</center> </td>
+                <td>@emp.DateActivated</td>
+                <td>@emp.ExpireDate</td>
+                <td>
+                    <a href='/editLicense/@emp.Pkey'>Edit</a>
+                </td>
+            </tr>
 
             }
         </tbody>

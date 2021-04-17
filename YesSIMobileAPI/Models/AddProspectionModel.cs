@@ -8,14 +8,15 @@ namespace YesSIMobileAPI.Models
 {
     public partial class AddProspectionModel
     {
+#nullable enable
         public ComProspection? Prospections { get; set; } = new();
-
+#nullable enable
         public YesSIMobileModels.Models2.CfgTier? Tier { get; set; } = new();
-
+#nullable enable
         public AdmUser? user { get; set; } = new();
-
+#nullable enable
         public ComProspectionCategory? Category { get; set; } = new();
-
+#nullable enable
         public ComProspectionType? Type { get; set; } = new();
 
         public AddProspectionModel(YesSIMobileModels.Models2.CfgTier person, ComProspection Prospection, AdmUser user, ComProspectionCategory Category, ComProspectionType type)

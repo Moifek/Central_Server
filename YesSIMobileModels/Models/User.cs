@@ -7,10 +7,12 @@ namespace YesSIMobileModels.Models
 {
     public class User
     {
+        [Required(ErrorMessage = "The Password is Required")]
+        public string Password { get; set; }
+
         [Required(ErrorMessage = "The UserName is Required")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "The Password is Required")]
-        public string Password { get; set; }
+        
     }
 }

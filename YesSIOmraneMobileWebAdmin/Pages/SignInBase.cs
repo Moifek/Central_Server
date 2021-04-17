@@ -47,21 +47,31 @@ namespace YesSIOmraneMobileWebAdmin.Pages
         protected async void HandleLogin()
         {
             Console.WriteLine("reached HandleLogin");
+            try
+            {
+                var query = await LoginUser.ConfirmLoginState(this.User, "WebApi/GetUserLogin");
 
-            var query = await LoginUser.ConfirmLoginState(this.User, "/WebApi/GetUserLogin");
-            Console.WriteLine(query.StatusCode.ToString());
+                Console.WriteLine(query.StatusCode.ToString());
+                Console.WriteLine(query);
+
+                if (!(query.Content is null))
+                {
+                    NAV.NavigateTo("/List");
+                    Console.WriteLine("reach");
+
+                }
+                else
+                {
+                    Console.WriteLine("api problem");
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine("api problem",e);
+            }
             
-
-            if (query.IsSuccessStatusCode == true)
-            {
-                NAV.NavigateTo("/List");
-                Console.WriteLine("reach");
-
-            }
-            else
-            {
-                Console.WriteLine("api problem");
-            }
 
 
         }
