@@ -51,7 +51,7 @@ namespace YesSIMobileAPI.Controllers
 
         [HttpPost]
         [Route("GetUserLogin")]
-        public IActionResult Get(string Password, string UserName)
+        public IActionResult UserLogin(string Password, string UserName)
         {
             User user = new();
             user.UserName = UserName;
@@ -61,6 +61,24 @@ namespace YesSIMobileAPI.Controllers
             if (_IAdmWebData.UserAvailable(user) == 2) { return Unauthorized(); }
             else { return Forbid(); }
 
+        }
+
+        [HttpPost(nameof(SetNewPassword))]
+        public IActionResult SetNewPassword(string pkey, string code, string pwd, string email)
+        {
+            switch (_IAdmWebData.SetNewPassword(code,pwd,email,pkey))
+            {
+                case (0):
+                    return Ok("User Found and updated !");
+                    
+                case (1):
+                    return BadRequest("User not Found");
+                case (2):
+                    return Conflict("Couldn't updated password!");
+                case (3):
+                    return NotFound("API Problem !");
+                default: return NoContent();
+            }
         }
 
         //[HttpPost("authenticate")]

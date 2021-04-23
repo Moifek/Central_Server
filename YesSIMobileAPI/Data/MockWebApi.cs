@@ -1,4 +1,5 @@
 ﻿using System;
+using YesSIMobileAPI.API;
 using System.Collections.Generic;
 using System.Linq;
 using YesSIMobileAPI.Data;
@@ -11,6 +12,7 @@ namespace YesSIMobileAPI.Data
     public class MockWebApi : IAdmWebData
     {
             private readonly DBContextClass _Context1;
+            private readonly ApiCall Api;
 
             public MockWebApi(DBContextClass db4)
             {
@@ -146,6 +148,39 @@ namespace YesSIMobileAPI.Data
             {
                 return false;
             }
+        }
+        public int SetNewPassword(string code, string pwd, string email,string pkey)
+        {
+            string url = _Context1.AdmLicenses.Find(pkey).ServerUrl;
+            try
+            {
+                AdmUser TempUser = new();
+                TempUser.Code = code;
+                TempUser.Pass = pwd;
+                TempUser.Email = email;
+                var result =Api.PostSerializedUser(url,TempUser).ToString();
+                if(int.Parse(result) != 200)
+                {
+                    return 1; //User does not exist or problem with API (client side)
+                   // throw ("User Does not Exist");
+                }
+                try
+                {
+                    Api.PostSerializedSetNewPassword(url+"SetNewPassword", TempUser);
+                }
+                catch (Exception)
+                {
+                    return 2; //Couldn't updated password
+                    throw;
+                }
+                return 0; //found user and updated password
+            }
+            catch (Exception)
+            {
+                return 3; //Api problem
+                throw;
+            }
+            
         }
     }
 }

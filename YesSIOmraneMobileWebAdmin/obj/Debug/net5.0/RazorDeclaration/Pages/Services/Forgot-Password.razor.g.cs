@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace YesSIOmraneMobileWebAdmin.Pages.Licences
+namespace YesSIOmraneMobileWebAdmin.Pages.Services
 {
     #line hidden
     using System;
@@ -97,46 +97,27 @@ using YesSIOmraneMobileWebAdmin.Pages;
 #line hidden
 #nullable disable
 #nullable restore
+#line 13 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
+using YesSIMobileModels.Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 14 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
 using YesSIOmraneMobileWebAdmin.API;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 1 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\ListLicenses.razor"
-using YesSIMobileModels.Models;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/List")]
-    public partial class ListLicenses : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Forgot-Password")]
+    public partial class Forgot_Password : ForgotPasswordBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 52 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\ListLicenses.razor"
-      
-
-    AdmLicense[] List2 = { };
-
-    HttpClient Client = new();
-    protected override async Task OnInitializedAsync()
-    {
-        //List2 = await Client.GetFromJsonAsync<AdmLicense[]>("http://192.168.1.103:5000/WebApi/GetLicenseList");
-        List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://localhost:44386/WebApi/GetLicenseList");
-
-    }
-
-
-#line default
-#line hidden
-#nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }
 #pragma warning restore 1591

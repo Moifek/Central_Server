@@ -14,7 +14,7 @@ namespace YesSIMobileAPI.API
     {
         RestClient Client;
 
-        public AdmUser GetDeserializedReleases(string url)
+        public AdmUser PostNonSerializedLogin(string url)
         {
             this.Client = new RestClient(url);
             var response = Client.Execute<AdmUser>(new RestRequest());
@@ -28,7 +28,6 @@ namespace YesSIMobileAPI.API
             
                  
         }
-
         public List<AddProspectionModel> GetDeserializedComProspections(string url)
         {
             this.Client = new RestClient(url);
@@ -56,7 +55,6 @@ namespace YesSIMobileAPI.API
                 return JsonConvert.DeserializeObject<List<ComProspection>>(response.Content);
             }
         }
-
         public List<ComProspectionKind> GetDeserializedComKinds(string url)
         {
             this.Client = new RestClient(url);
@@ -82,7 +80,6 @@ namespace YesSIMobileAPI.API
                 return JsonConvert.DeserializeObject<List<ComProspectionOrigin>>(response.Content);
             }
         }
-
         public List<CfgTranche> GetDeserializedCfgTranche(string url)
         {
             this.Client = new RestClient(url);
@@ -131,9 +128,6 @@ namespace YesSIMobileAPI.API
                 return JsonConvert.DeserializeObject<List<StkItemType>>(response.Content);
             }
         }
-
-
-
         public async Task<HttpStatusCode> PostSerializedProspections(string url, AddProspectionModel Prospections)
         {
             this.Client = new RestClient(url);
@@ -156,11 +150,51 @@ namespace YesSIMobileAPI.API
             {
                 return HttpStatusCode.BadRequest;
             }
-
-
-
-
         }
+        public HttpStatusCode PostSerializedUser(string url, AdmUser TempUser)
+        {
+            this.Client = new RestClient(url);
+            var request = new RestRequest(Method.POST);
+            string jsonToSend = JsonConvert.SerializeObject(TempUser);
+            request.AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
 
+            try
+            {
+                var result = Client.Execute(request);
+                if (result.IsSuccessful)
+                {
+                    return HttpStatusCode.OK;
+                }
+                return HttpStatusCode.NotFound;
+
+            }
+            catch (Exception e)
+            {
+                return HttpStatusCode.BadRequest;
+            }
+        }
+        public HttpStatusCode PostSerializedSetNewPassword(string url, AdmUser TempUser)
+        {
+            this.Client = new RestClient(url);
+            var request = new RestRequest(Method.POST);
+            string jsonToSend = JsonConvert.SerializeObject(TempUser);
+            request.AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+            try
+            {
+                var result =  Client.Execute(request);
+                if (result.IsSuccessful)
+                {
+                    return HttpStatusCode.OK;
+                }
+                return HttpStatusCode.NotFound;
+
+            }
+            catch (Exception e)
+            {
+                return HttpStatusCode.BadRequest;
+            }
+        }
     }
 }

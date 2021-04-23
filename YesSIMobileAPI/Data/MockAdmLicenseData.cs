@@ -121,7 +121,7 @@ namespace YesSIMobileAPI.Data
             var License = _Context1.AdmLicenses.Find(pkey);
             if (License != null)
             {
-                var item = (api.GetDeserializedReleases(License.ServerUrl + "Login?code=" + name + "&pwd=" + pwd));
+                var item = (api.PostNonSerializedLogin(License.ServerUrl + "Login?code=" + name + "&pwd=" + pwd));
                 if (item != null) { return item; }
 
                 return null;

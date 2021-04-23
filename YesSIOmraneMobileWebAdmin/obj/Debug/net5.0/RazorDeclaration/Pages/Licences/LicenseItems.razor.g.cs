@@ -104,14 +104,14 @@ using YesSIOmraneMobileWebAdmin.API;
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\ListLicenses.razor"
+#line 1 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\LicenseItems.razor"
 using YesSIMobileModels.Models;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/List")]
-    public partial class ListLicenses : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/GererLicense/{LicenseID}")]
+    public partial class LicenseItems : ListItemsBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -119,24 +119,15 @@ using YesSIMobileModels.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\ListLicenses.razor"
-      
+#line 51 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\LicenseItems.razor"
+       
 
-    AdmLicense[] List2 = { };
-
-    HttpClient Client = new();
-    protected override async Task OnInitializedAsync()
-    {
-        //List2 = await Client.GetFromJsonAsync<AdmLicense[]>("http://192.168.1.103:5000/WebApi/GetLicenseList");
-        List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://localhost:44386/WebApi/GetLicenseList");
-
-    }
+    AdmLicense[] list;
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }
 #pragma warning restore 1591

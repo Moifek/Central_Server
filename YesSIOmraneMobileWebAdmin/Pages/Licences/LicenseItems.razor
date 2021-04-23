@@ -1,0 +1,55 @@
+﻿@using YesSIMobileModels.Models
+@inherits ListItemsBase
+@page "/GererLicense/{LicenseID}"
+
+
+
+<h2>Gestion des Utilisateur Mobile</h2>
+<h4>License de @License.Description</h4>
+<hr />
+
+@if (License == null)
+{
+    <p><em>Loading...</em></p>
+    @OnIOnInitializedAsync()
+}
+else
+{
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Session Key</th>
+                <th>Phone IP</th>
+                <th>User Name</th>
+                <th>User ID</th>
+                <th>Session Active Since</th>
+                <th>App Version</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in list)
+            {
+                <tr>
+                    <td>@emp.Pkey</td>
+                    <td>@emp.Description</td>
+                    <td>@emp.AdmUserEmail</td>
+                    <td>@emp.ServerUrl</td>
+                    <td><center>@emp.UserNumber</center> </td>
+                    <td>@emp.DateActivated</td>
+                    <td>@emp.ExpireDate</td>
+                    <td>
+                        <a href='#'>Block</a>
+                        <a href='#'>Delete User</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+@code{ 
+
+    AdmLicense[] list;
+
+}
