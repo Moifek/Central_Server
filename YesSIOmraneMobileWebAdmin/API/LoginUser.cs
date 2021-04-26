@@ -38,5 +38,26 @@ namespace YesSIOmraneMobileWebAdmin.API
             
         }
 
+        public async Task<HttpResponseMessage> SetNewPassword(string Request, string code, string pwd, string email, string pkey)
+        {
+            if(email is not null)
+            {
+                pwd = null;
+                code = null;
+                HttpRequestMessage _Request = new HttpRequestMessage(HttpMethod.Post, _HttpClient.BaseAddress + Request + "?pkey=" + pkey + "&email=" + email);
+                var response = await _HttpClient.SendAsync(_Request);
+                if (response.IsSuccessStatusCode)
+                {
+                    return response;
+                }
+                else
+                {
+
+                    return null;
+                }
+            }
+            return null;
+        }
+
     }
 }

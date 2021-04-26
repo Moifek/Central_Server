@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace YesSIOmraneMobileWebAdmin.Pages
+namespace YesSIOmraneMobileWebAdmin.Pages.Services
 {
     #line hidden
     using System;
@@ -110,8 +110,8 @@ using YesSIOmraneMobileWebAdmin.API;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/signin")]
-    public partial class SignIn : SignInBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/forgotPasswordEmailReset")]
+    public partial class ForgotPasswordEmailReset : ForgotPasswordEmailResetBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
