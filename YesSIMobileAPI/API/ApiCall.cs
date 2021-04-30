@@ -128,7 +128,44 @@ namespace YesSIMobileAPI.API
                 return JsonConvert.DeserializeObject<List<StkItemType>>(response.Content);
             }
         }
+        public List<AdmUser> GetDeserializedAdmUsers(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<List<AdmUser>>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<AdmUser>>(response.Content);
+            }
+        }
+        public AdmUser PostDeserializedAdmUser(string url, string email)
+        {
+            this.Client = new RestClient(url+"?email="+email);
+            var response = Client.Execute<AdmUser>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<AdmUser>(response.Content);
+            }
+        }
+        public string PostGeneratePasswordResetToken(string url, string email)
+        {
+            this.Client = new RestClient(url + "?email=" + email);
+            var response = Client.Execute<string>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<string>(response.Content);
+            }
+        }
         public async Task<HttpStatusCode> PostSerializedProspections(string url, AddProspectionModel Prospections)
+
         {
             this.Client = new RestClient(url);
             var request = new RestRequest(Method.POST);
@@ -151,7 +188,7 @@ namespace YesSIMobileAPI.API
                 return HttpStatusCode.BadRequest;
             }
         }
-        public HttpStatusCode PostSerializedUser(string url, AdmUser TempUser)
+        public HttpStatusCode PostSerializedUserUpdate(string url, AdmUser TempUser)
         {
             this.Client = new RestClient(url);
             var request = new RestRequest(Method.POST);

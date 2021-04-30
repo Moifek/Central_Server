@@ -15,5 +15,6 @@ namespace YesSIMobileAPI.Data
         public AdmLicense GetSpecificLicense(string pkey);
         public bool UpdateLicense(string pkey, string DateExpired, string MobileUsers, string ServerURL, string Description, string AdminEmail);
         int SetNewPassword(string code, string pwd, string email, string pkey);
+        int SendResetMail(string pkey, string email);
     }
 }

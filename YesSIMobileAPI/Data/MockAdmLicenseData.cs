@@ -219,5 +219,6 @@ namespace YesSIMobileAPI.Data
             string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
             return api.GetDeserializedItemType(url+"GetStkItemTypes");
         }
+
     }
 }

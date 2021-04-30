@@ -119,8 +119,8 @@ using YesSIMobileModels.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 51 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\LicenseItems.razor"
-       
+#line 52 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\LicenseItems.razor"
+      
 
     AdmLicense[] list;
 

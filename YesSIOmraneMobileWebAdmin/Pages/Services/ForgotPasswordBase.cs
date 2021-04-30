@@ -8,5 +8,7 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Services
 {
     public class ForgotPasswordBase : ComponentBase
     {
+        [Parameter]
+        public string Token { get; set; } 
     }
 }

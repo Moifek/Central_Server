@@ -20,7 +20,7 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Licences
 
         private ApiCaller Api { get; set; } = new("Https://Localhost:44386/");
 
-        protected async Task OnIOnInitializedAsync()
+        protected override async Task OnInitializedAsync()
         {
             License = await Api.GetSpecificLicense(LicenseID, "WebApi/GetSpecificLicense");
         }

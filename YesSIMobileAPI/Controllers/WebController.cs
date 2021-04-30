@@ -164,5 +164,20 @@ namespace YesSIMobileAPI.Controllers
                 return BadRequest("Something wrong happend !");
             }
         }
+        [HttpGet(nameof(SendEmailResetPassword))]
+        public IActionResult SendEmailResetPassword(string pkey, string email)
+        {
+            switch (_IAdmWebData.SendResetMail(pkey, email))
+            {
+                case (0):
+                    return Ok("User Found and email sent !");
+
+                case (1):
+                    return Conflict("User found but couldn't send mail");
+                case (2):
+                    return BadRequest("User not Found");
+                default: return NoContent();
+            }
+        }
     }
 }
