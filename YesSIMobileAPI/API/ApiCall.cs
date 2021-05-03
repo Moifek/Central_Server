@@ -13,6 +13,10 @@ namespace YesSIMobileAPI.API
     public class ApiCall
     {
         RestClient Client;
+        public ApiCall()
+        {
+          
+        }
 
         public AdmUser PostNonSerializedLogin(string url)
         {
@@ -152,18 +156,18 @@ namespace YesSIMobileAPI.API
                 return JsonConvert.DeserializeObject<AdmUser>(response.Content);
             }
         }
-        public string PostGeneratePasswordResetToken(string url, string email)
-        {
-            this.Client = new RestClient(url + "?email=" + email);
-            var response = Client.Execute<string>(new RestRequest());
+        //public string PostGeneratePasswordResetToken(string url, string email)
+        //{
+        //    this.Client = new RestClient(url + "?email=" + email);
+        //    var response = Client.Execute<string>(new RestRequest());
 
-            if (response.Content == "") { return null; }
+        //    if (response.Content == "") { return null; }
 
-            else
-            {
-                return JsonConvert.DeserializeObject<string>(response.Content);
-            }
-        }
+        //    else
+        //    {
+        //        return JsonConvert.DeserializeObject<string>(response.Content);
+        //    }
+        //}
         public async Task<HttpStatusCode> PostSerializedProspections(string url, AddProspectionModel Prospections)
 
         {
@@ -188,7 +192,7 @@ namespace YesSIMobileAPI.API
                 return HttpStatusCode.BadRequest;
             }
         }
-        public HttpStatusCode PostSerializedUserUpdate(string url, AdmUser TempUser)
+        public async Task<HttpStatusCode> PostSerializedUserUpdate(string url, AdmUser TempUser)
         {
             this.Client = new RestClient(url);
             var request = new RestRequest(Method.POST);
@@ -198,7 +202,7 @@ namespace YesSIMobileAPI.API
 
             try
             {
-                var result = Client.Execute(request);
+                var result = await Client.ExecuteAsync(request);
                 if (result.IsSuccessful)
                 {
                     return HttpStatusCode.OK;

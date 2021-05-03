@@ -24,6 +24,8 @@ namespace YesSIMobileModels.Models
         public virtual DbSet<AdmUser> AdmUsers { get; set; }
         public virtual DbSet<CfgTier> CfgTiers { get; set; }
         public virtual DbSet<CfgTierType> CfgTierTypes { get; set; }
+        public virtual DbSet<SysBlackListToken> SysBlackListTokens { get; set; }
+        public virtual DbSet<SysResetPasswordAppRequest> SysResetPasswordAppRequests { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -83,19 +85,11 @@ namespace YesSIMobileModels.Models
             modelBuilder.Entity<AdmUser>(entity =>
             {
                 entity.HasKey(e => e.Pkey)
-                    .HasName("AdmUserKey_PK");
+                    .HasName("AdmUser_PK");
 
                 entity.Property(e => e.Pkey).ValueGeneratedNever();
 
-                entity.HasOne(d => d.AdmRole)
-                    .WithMany(p => p.AdmUsers)
-                    .HasForeignKey(d => d.AdmRoleId)
-                    .HasConstraintName("AdmUser_AdmRole_FK1");
-
-                entity.HasOne(d => d.CfgTier)
-                    .WithMany(p => p.AdmUsers)
-                    .HasForeignKey(d => d.CfgTierId)
-                    .HasConstraintName("AdmUser_CfgTierId_FK1");
+                entity.Property(e => e.Code).IsUnicode(false);
             });
 
             modelBuilder.Entity<CfgTier>(entity =>
@@ -117,6 +111,22 @@ namespace YesSIMobileModels.Models
                     .HasName("CfgTierTypeKey_PK");
 
                 entity.Property(e => e.Pkey).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<SysBlackListToken>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<SysResetPasswordAppRequest>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.SysResetPasswordAppRequests)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserID_AdmUserID");
             });
 
             OnModelCreatingPartial(modelBuilder);

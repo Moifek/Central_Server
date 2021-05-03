@@ -47,11 +47,31 @@ namespace YesSIOmraneMobileWebAdmin.API
             string _Request = _HttpClient.BaseAddress + request + "?pkey=" + pkey;
             return await _HttpClient.GetFromJsonAsync<AdmLicense>(_Request);
         }
+        public async Task<SysResetPasswordAppRequest> GetServerUrl(string request, string token)
+        {
+            string _Request = _HttpClient.BaseAddress + request + "?token=" + token;
+            return await _HttpClient.GetFromJsonAsync<SysResetPasswordAppRequest>(_Request);
+        }
 
         public async Task<HttpResponseMessage> UpdateLicense(AdmLicense License, string request)
         {
 
             string _Request = _HttpClient.BaseAddress + request + "?pkey=" + License.Pkey + "&DateExpired=" + License.ExpireDate + "&MobileUsers=" + License.UserNumber + "&ServerURL=" + License.ServerUrl + "&Description=" + License.Description + "&AdminEmail=" + License.AdmUserEmail;
+            HttpRequestMessage FinalRequest = new(HttpMethod.Post, _Request);
+            try
+            {
+                return await _HttpClient.SendAsync(FinalRequest);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+        public async Task<HttpResponseMessage> UpdatePassword(AdmUser user, string request, string pkey)
+        {
+            string _Request = _HttpClient.BaseAddress + request + "?pkey=" + pkey + "&ID=" + user.Pkey + "&password=" + user.Pass ;
             HttpRequestMessage FinalRequest = new(HttpMethod.Post, _Request);
             try
             {

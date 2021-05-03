@@ -7,19 +7,26 @@ using System.Threading.Tasks;
 using YesSIMobileAPI.Models;
 using YesSIMobileModels.Models2;
 using System.Net.Mail;
+using MailKit.Net.Imap;
+using MailKit.Search;
+using MailKit;
+using MimeKit;
 using System.Net;
+using Microsoft.Extensions.Configuration;
 
 namespace YesSIMobileAPI.Data
 {
     public class MockWebApi : IAdmWebData
     {
             private readonly DBContextClass _Context1;
-            private readonly ApiCall Api;
+            private readonly ApiCall Api=new();
+            private readonly IConfiguration configuration;
 
-            public MockWebApi(DBContextClass db4)
+            public MockWebApi(DBContextClass db4, IConfiguration configuration)
             {
                 _Context1 = db4;
-            }
+                this.configuration = configuration;
+             }
 
             public void Delete(Guid id)
             {
@@ -151,24 +158,54 @@ namespace YesSIMobileAPI.Data
                 return false;
             }
         }
+        public SysResetPasswordAppRequest GenerateResetPasswordUrl(string pkey, AdmUser _User)
+        {
+            try
+            {
+                AdmUser user = _User;
+                if (user is not null)
+                {
+                    SysResetPasswordAppRequest request = new();
+                    request.Id = Guid.NewGuid();
+                    request.ServerUrl = Guid.Parse(pkey);
+                    request.UserId = user.Pkey;
+                    request.User = user;
+                    request.ResetRequestDateTime = DateTime.Now;
+                    request.Valid = true;
+                    _Context1.SaveChanges();
+                    return request;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+        }
         public int SendResetMail(string pkey, string email)
         {
             string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
             try
             {
-                AdmUser User = Api.PostDeserializedAdmUser(url+ "GetUserByEmail", email);
+                AdmUser User = Api.PostDeserializedAdmUser(url + "GetUserByEmail", email);
                 if (User is not null)
                 {
-                    string Link = Api.PostGeneratePasswordResetToken(url+ "ForgotPasswordResetMailTokenGenerator", email);
-                    MailMessage mm = new("moifekmaiza2@gmail.com", email);
+                    SysResetPasswordAppRequest table = GenerateResetPasswordUrl(pkey, User);
+                    string Link = table.Id.ToString();
+                    MailAddress from = new(configuration["EmailAdress"]);
+                    MailAddress to = new(email);
+                    MailMessage mm = new(from, to);
                     mm.Subject = "Password Recovery";                               // Must Decrypt before using this function for real
                     mm.Body = string.Format("Hi" + User.Description + ",<br /><br />Your password is " + User.Pass + " .<br /><br />Thank You.<br />or you can use" +
-                        "this link to reset your password :"+ "Https://LocalHost:5003/Forgot-Password/"+Link+" <br />");
+                        "this link to reset your password :" + "Https://LocalHost:5003/Forgot-Password/" + Link + " <br />");
                     mm.IsBodyHtml = true;
                     SmtpClient smtpClient = new("smtp.gmail.com", Convert.ToInt32(587));
-                    NetworkCredential credentials = new("moifekmaiza@gmail.com", "moifekgg122");
+                    //NetworkCredential credentials = new("moifekmaiza2@gmail.com", "moifekgg122");
+                    NetworkCredential credentials = new(configuration["EmailAdress"], configuration["EmailPassword"]);
                     smtpClient.Credentials = credentials;
                     smtpClient.EnableSsl = true;
+                    smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                     smtpClient.Send(mm);
                     return 0;
                 }
@@ -180,31 +217,25 @@ namespace YesSIMobileAPI.Data
                 throw;
             }
         }
-        public int SetNewPassword(string code, string pwd, string email,string pkey)
+        public int SetNewPassword(string pwd,string url,string ID)
         {
-            string url = _Context1.AdmLicenses.Find(pkey).ServerUrl;
+            
             try
             {
                 AdmUser TempUser = new();
-                TempUser.Code = code;
                 TempUser.Pass = pwd;
-                TempUser.Email = email;
-                var result =Api.PostSerializedUserUpdate(url,TempUser).ToString();
-                if(int.Parse(result) != 200)
-                {
-                    return 1; //User does not exist or problem with API (client side)
-                   // throw ("User Does not Exist");
-                }
+                TempUser.Pkey = Guid.Parse(ID);
+                TempUser.Code = "ttt";
                 try
                 {
                     Api.PostSerializedSetNewPassword(url+"SetNewPassword", TempUser);
+                    return 0;
                 }
                 catch (Exception)
                 {
                     return 2; //Couldn't updated password
                     throw;
                 }
-                return 0; //found user and updated password
             }
             catch (Exception)
             {
@@ -212,6 +243,18 @@ namespace YesSIMobileAPI.Data
                 throw;
             }
             
+        }
+        public SysResetPasswordAppRequest GetServerUrl(string token)
+        {
+            try
+            {
+                return _Context1.SysResetPasswordAppRequests.Find(token);
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
         }
     }
 }

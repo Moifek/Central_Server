@@ -17,8 +17,7 @@ namespace YesSIMobileModels.Models
         [Column("UserID")]
         public Guid UserId { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        [Required]
+        public DateTime? EndDate { get; set; }
         [Column("IP")]
         [StringLength(50)]
         public string Ip { get; set; }
@@ -29,5 +28,6 @@ namespace YesSIMobileModels.Models
         public string Mac { get; set; }
         [StringLength(50)]
         public string AppVersion { get; set; }
+        public Guid? Licensee { get; set; }
     }
 }

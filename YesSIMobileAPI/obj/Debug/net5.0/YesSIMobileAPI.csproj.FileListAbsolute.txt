@@ -67,3 +67,6 @@ C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\obj\Debug\net5.0\YesS
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\obj\Debug\net5.0\ref\YesSIMobileAPI.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\obj\Debug\net5.0\YesSIMobileAPI.pdb
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\obj\Debug\net5.0\YesSIMobileAPI.genruntimeconfig.cache
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\MailKit.dll
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\MimeKit.dll
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\BouncyCastle.Crypto.dll

@@ -110,7 +110,7 @@ using YesSIOmraneMobileWebAdmin.API;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/Forgot-Password")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/Forgot-Password/{Token}")]
     public partial class Forgot_Password : ForgotPasswordBase
     {
         #pragma warning disable 1998

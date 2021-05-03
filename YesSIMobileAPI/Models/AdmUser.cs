@@ -14,6 +14,7 @@ namespace YesSIMobileAPI.Models
         public AdmUser()
         {
             AdmLicenses = new HashSet<AdmLicense>();
+            SysResetPasswordAppRequests = new HashSet<SysResetPasswordAppRequest>();
         }
 
         [Key]
@@ -61,5 +62,7 @@ namespace YesSIMobileAPI.Models
 
         [InverseProperty(nameof(AdmLicense.AdmUser))]
         public virtual ICollection<AdmLicense> AdmLicenses { get; set; }
+        [InverseProperty(nameof(SysResetPasswordAppRequest.User))]
+        public virtual ICollection<SysResetPasswordAppRequest> SysResetPasswordAppRequests { get; set; }
     }
 }

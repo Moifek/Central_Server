@@ -17,17 +17,14 @@ namespace YesSIMobileModels.Models
         [Column(TypeName = "date")]
         public DateTime? DateActivated { get; set; }
         [Column(TypeName = "date")]
-        [Required(ErrorMessage = "The Expire Date is Required")]
         public DateTime? ExpireDate { get; set; }
-        [Required(ErrorMessage = "The Server Url is Required")]
         public string ServerUrl { get; set; }
         public Guid? AdmUserId { get; set; }
-        [Required(ErrorMessage = "The User Number is Required")]
         public int? UserNumber { get; set; }
+        public int ActiveUserNumber { get; set; }
         [StringLength(50)]
-        [Required(ErrorMessage = "The Description (Company Name) is Required")]
         public string Description { get; set; }
-        [Required(ErrorMessage = "The UserName is Required")]
+        [Required]
         public string AdmUserEmail { get; set; }
 
         [ForeignKey(nameof(AdmUserId))]

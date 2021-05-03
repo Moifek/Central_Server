@@ -25,6 +25,7 @@ namespace YesSIMobileAPI.Models
         public virtual DbSet<CfgTier> CfgTiers { get; set; }
         public virtual DbSet<CfgTierType> CfgTierTypes { get; set; }
         public virtual DbSet<SysBlackListToken> SysBlackListTokens { get; set; }
+        public virtual DbSet<SysResetPasswordAppRequest> SysResetPasswordAppRequests { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -115,6 +116,17 @@ namespace YesSIMobileAPI.Models
             modelBuilder.Entity<SysBlackListToken>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<SysResetPasswordAppRequest>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.SysResetPasswordAppRequests)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_UserID_AdmUserID");
             });
 
             OnModelCreatingPartial(modelBuilder);

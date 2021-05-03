@@ -1007,3 +1007,15 @@ C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\YesSIOmraneMobileWebAdmin.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\ref\YesSIOmraneMobileWebAdmin.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\YesSIOmraneMobileWebAdmin.pdb
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\bin\Debug\net5.0\wwwroot\_framework\MailKit.dll.gz
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\bin\Debug\net5.0\wwwroot\_framework\MimeKit.dll.gz
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\bin\Debug\net5.0\wwwroot\_framework\BouncyCastle.Crypto.dll.gz
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\bin\Debug\net5.0\wwwroot\_framework\System.Security.Cryptography.Pkcs.dll.gz
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\bin\Debug\net5.0\wwwroot\_framework\MailKit.dll
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\bin\Debug\net5.0\wwwroot\_framework\MimeKit.dll
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\bin\Debug\net5.0\wwwroot\_framework\BouncyCastle.Crypto.dll
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\bin\Debug\net5.0\wwwroot\_framework\System.Security.Cryptography.Pkcs.dll
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\build-gz\m+dyFU7E.gz
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\build-gz\FgfvULXp.gz
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\build-gz\hzJKet+F.gz
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\build-gz\a0Q5TylL.gz

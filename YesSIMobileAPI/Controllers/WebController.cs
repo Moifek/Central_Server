@@ -62,11 +62,10 @@ namespace YesSIMobileAPI.Controllers
             else { return Forbid(); }
 
         }
-
         [HttpPost(nameof(SetNewPassword))]
-        public IActionResult SetNewPassword(string pkey, string code, string pwd, string email)
+        public IActionResult SetNewPassword(string pkey, string password,string ID)
         {
-            switch (_IAdmWebData.SetNewPassword(code,pwd,email,pkey))
+            switch (_IAdmWebData.SetNewPassword(pkey, password,ID))
             {
                 case (0):
                     return Ok("User Found and updated !");
@@ -173,11 +172,16 @@ namespace YesSIMobileAPI.Controllers
                     return Ok("User Found and email sent !");
 
                 case (1):
-                    return Conflict("User found but couldn't send mail");
+                    return Conflict("User not found");
                 case (2):
-                    return BadRequest("User not Found");
+                    return BadRequest("User not Found or problem with Email service");
                 default: return NoContent();
             }
+        }
+        [HttpGet(nameof(GetServerUrl))]
+        public IActionResult GetServerUrl(string token)
+        {
+            return Ok(_IAdmWebData.GetServerUrl(token));
         }
     }
 }

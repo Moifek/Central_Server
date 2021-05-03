@@ -11,11 +11,6 @@ namespace YesSIMobileModels.Models
     [Table("AdmRole")]
     public partial class AdmRole
     {
-        public AdmRole()
-        {
-            AdmUsers = new HashSet<AdmUser>();
-        }
-
         [Key]
         [Column("PKey")]
         public Guid Pkey { get; set; }
@@ -26,7 +21,5 @@ namespace YesSIMobileModels.Models
         [ForeignKey(nameof(AdmRoleTypeId))]
         [InverseProperty("AdmRoles")]
         public virtual AdmRoleType AdmRoleType { get; set; }
-        [InverseProperty(nameof(AdmUser.AdmRole))]
-        public virtual ICollection<AdmUser> AdmUsers { get; set; }
     }
 }

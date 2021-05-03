@@ -11,11 +11,6 @@ namespace YesSIMobileModels.Models
     [Table("CfgTier")]
     public partial class CfgTier
     {
-        public CfgTier()
-        {
-            AdmUsers = new HashSet<AdmUser>();
-        }
-
         [Key]
         [Column("PKey")]
         public Guid Pkey { get; set; }
@@ -32,7 +27,5 @@ namespace YesSIMobileModels.Models
         [ForeignKey(nameof(CfgTierTypeId))]
         [InverseProperty("CfgTiers")]
         public virtual CfgTierType CfgTierType { get; set; }
-        [InverseProperty(nameof(AdmUser.CfgTier))]
-        public virtual ICollection<AdmUser> AdmUsers { get; set; }
     }
 }
