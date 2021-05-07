@@ -69,9 +69,9 @@ namespace YesSIOmraneMobileWebAdmin.API
             }
 
         }
-        public async Task<HttpResponseMessage> UpdatePassword(AdmUser user, string request, string pkey)
+        public async Task<HttpResponseMessage> UpdatePassword(AdmUser user, string request, string url)
         {
-            string _Request = _HttpClient.BaseAddress + request + "?pkey=" + pkey + "&ID=" + user.Pkey + "&password=" + user.Pass ;
+            string _Request = _HttpClient.BaseAddress + request + "?url=" + url + "&ID=" + user.Pkey + "&password=" + user.Pass ;
             HttpRequestMessage FinalRequest = new(HttpMethod.Post, _Request);
             try
             {

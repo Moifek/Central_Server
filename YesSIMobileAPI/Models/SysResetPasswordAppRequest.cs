@@ -13,7 +13,9 @@ namespace YesSIMobileAPI.Models
         [Key]
         [Column("ID")]
         public Guid Id { get; set; }
-        public Guid ServerUrl { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string ServerUrl { get; set; }
         public Guid UserId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime ResetRequestDateTime { get; set; }

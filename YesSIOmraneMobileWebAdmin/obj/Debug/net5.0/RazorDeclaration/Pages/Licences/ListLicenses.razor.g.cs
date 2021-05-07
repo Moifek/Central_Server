@@ -128,7 +128,7 @@ using YesSIMobileModels.Models;
     protected override async Task OnInitializedAsync()
     {
         //List2 = await Client.GetFromJsonAsync<AdmLicense[]>("http://192.168.1.103:5000/WebApi/GetLicenseList");
-        List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://localhost:44386/WebApi/GetLicenseList");
+        List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://192.168.1.8:5001/WebApi/GetLicenseList");
 
     }
 

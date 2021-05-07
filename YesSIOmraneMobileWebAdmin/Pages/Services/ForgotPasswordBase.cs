@@ -12,21 +12,23 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Services
     {
         [Inject]
         public NavigationManager NAV { get; set; }
+        protected ResetPasswordModel PasswordModel { get; set; } = new();
         [Parameter]
         public string Token { get; set; }
-        protected AdmUser user { get; set; }
+        protected AdmUser User { get; set; }
         private ApiCaller Api { get; set; } = new("Https://Localhost:44386/");
 
         protected async Task UpdatePassword(string password)
         {
             try
             {
-                var row = await Api.GetServerUrl("GetServerUrl",Token);
+                var row = await Api.GetServerUrl("WebApi/GetServerUrl", Token);
                 try
                 {
-                    user.Pass = password;
-                    user.Pkey = row.UserId;
-                    var PassTask = await Api.UpdatePassword(user, "/SetNewPassword", row.ServerUrl.ToString());
+                    User.Pass = password;
+                    User.Pkey = row.UserId;
+                    var PassTask = await Api.UpdatePassword(User, "WebApi/SetNewPassword", row.ServerUrl);
+                    NAV.NavigateTo("/List");
                 }
                 catch (Exception)
                 {

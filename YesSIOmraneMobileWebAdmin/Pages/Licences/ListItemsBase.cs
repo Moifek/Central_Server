@@ -16,7 +16,7 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Licences
 
         protected AdmLicense License { get; set; } = new();
 
-        private ApiCaller Api { get; set; } = new("Https://Localhost:44386/");
+        private ApiCaller Api { get; set; } = new("https://192.168.1.8:5001/");
 
         protected async Task OnIOnInitializedAsync()
         {

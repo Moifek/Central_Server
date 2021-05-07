@@ -167,7 +167,7 @@ namespace YesSIMobileAPI.Data
                 {
                     SysResetPasswordAppRequest request = new();
                     request.Id = Guid.NewGuid();
-                    request.ServerUrl = Guid.Parse(pkey);
+                    request.ServerUrl = _Context1.AdmLicenses.Find(Guid.Parse(pkey)).ServerUrl;
                     request.UserId = user.Pkey;
                     request.User = user;
                     request.ResetRequestDateTime = DateTime.Now;
@@ -203,6 +203,7 @@ namespace YesSIMobileAPI.Data
                     SmtpClient smtpClient = new("smtp.gmail.com", Convert.ToInt32(587));
                     //NetworkCredential credentials = new("moifekmaiza2@gmail.com", "moifekgg122");
                     NetworkCredential credentials = new(configuration["EmailAdress"], configuration["EmailPassword"]);
+                    smtpClient.UseDefaultCredentials = true;
                     smtpClient.Credentials = credentials;
                     smtpClient.EnableSsl = true;
                     smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -217,7 +218,7 @@ namespace YesSIMobileAPI.Data
                 throw;
             }
         }
-        public int SetNewPassword(string pwd,string url,string ID)
+        public int SetNewPassword(string url, string pwd,string ID)
         {
             
             try
@@ -248,7 +249,10 @@ namespace YesSIMobileAPI.Data
         {
             try
             {
-                return _Context1.SysResetPasswordAppRequests.Find(token);
+                Guid x = Guid.Parse(token);
+                var result = _Context1.SysResetPasswordAppRequests.Find(x);
+                return result;
+                
             }
             catch (Exception)
             {
