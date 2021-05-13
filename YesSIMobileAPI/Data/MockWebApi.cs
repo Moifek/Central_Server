@@ -201,7 +201,6 @@ namespace YesSIMobileAPI.Data
                         "this link to reset your password :" + "Https://LocalHost:5003/Forgot-Password/" + Link + " <br />");
                     mm.IsBodyHtml = true;
                     SmtpClient smtpClient = new("smtp.gmail.com", Convert.ToInt32(587));
-                    //NetworkCredential credentials = new("moifekmaiza2@gmail.com", "moifekgg122");
                     NetworkCredential credentials = new(configuration["EmailAdress"], configuration["EmailPassword"]);
                     smtpClient.UseDefaultCredentials = true;
                     smtpClient.Credentials = credentials;

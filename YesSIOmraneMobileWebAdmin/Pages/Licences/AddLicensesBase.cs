@@ -19,7 +19,7 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Licences
 
         protected AdmLicense License { get; set; } = new();
 
-        protected ApiCaller Api = new("Https://Localhost:44386/");
+        protected ApiCaller Api = new("Https://192.168.1.8:5001/");
 
         [Inject]
         protected NavigationManager NAV { get; set; }

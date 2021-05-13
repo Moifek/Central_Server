@@ -22,7 +22,7 @@ namespace YesSIOmraneMobileWebAdmin.Pages
         [Inject]
         protected NavigationManager NAV { get; set; }
 
-        protected LoginUser LoginUser { get; set; } = new("https://localhost:44386"); 
+        protected LoginUser LoginUser { get; set; } = new("Https://192.168.1.8:5001/"); 
 
 
 
