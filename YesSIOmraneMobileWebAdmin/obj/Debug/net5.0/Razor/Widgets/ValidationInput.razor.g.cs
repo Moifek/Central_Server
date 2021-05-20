@@ -107,6 +107,13 @@ using YesSIOmraneMobileWebAdmin.API;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 15 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
+using Blazored.SessionStorage;
+
+#line default
+#line hidden
+#nullable disable
     public partial class ValidationInput : ValidationInputBase
     {
         #pragma warning disable 1998

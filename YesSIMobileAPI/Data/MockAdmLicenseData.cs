@@ -26,19 +26,19 @@ namespace YesSIMobileAPI.Data
 
         public int CheckLicense(Guid id)
         {
-           
-                AdmLicense query = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == id);
-                if (query == null) { return 1; }
-                if (query.ExpireDate < DateTime.Now) { return 2;}
-                else { return 0; }
-            
+
+            AdmLicense query = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == id);
+            if (query == null) { return 1; }
+            if (query.ExpireDate < DateTime.Now) { return 2; }
+            else { return 0; }
+
         }
 
         public async Task<bool> Disconnect(Guid pkey)
         {
             AdmAppSession Session = _Context1.AdmAppSessions.Find(pkey);
             SysBlackListToken blackList = new();
-            if(Session.State == true)
+            if (Session.State == true)
             {
                 blackList.Id = Guid.NewGuid();
                 blackList.Token = Session.Jwtoken;
@@ -58,21 +58,21 @@ namespace YesSIMobileAPI.Data
                 {
                     return false;
                 }
-                
-                
+
+
             }
             else
             {
                 return false;
             }
-            
-            
+
+
         }
 
         private void RefreshActiveUsers(Guid License)
         {
             AdmLicense _License = _Context1.AdmLicenses.Find(License);
-             _License.ActiveUserNumber--;
+            _License.ActiveUserNumber--;
         }
 
 
@@ -100,7 +100,7 @@ namespace YesSIMobileAPI.Data
                 return null;
             }
             else
-            { 
+            {
                 _AdmLicense.ActiveUserNumber++;
                 _Context1.AdmAppSessions.Add(Session);
                 await _Context1.SaveChangesAsync();
@@ -127,12 +127,12 @@ namespace YesSIMobileAPI.Data
                 return null;
             }
             else
-                {
+            {
                 return null;
             }
         }
 
-        public List<AddProspectionModel> GetProspection(Guid id)
+        public List<Object> GetProspection(Guid id)
         {
             var License = _Context1.AdmLicenses.Find(id);
             if (License != null)
@@ -148,28 +148,28 @@ namespace YesSIMobileAPI.Data
             }
         }
         public AdmLicense VerifLicense2(Guid pkey, string name)
+        {
+            var x = _Context1.AdmLicenses.FirstOrDefault(a => a.AdmUserEmail == name && a.Pkey == pkey);
+
+            if (x.ExpireDate > DateTime.Now)
             {
-                var x = _Context1.AdmLicenses.FirstOrDefault(a => a.AdmUserEmail == name && a.Pkey == pkey);
-                
-                if (x.ExpireDate > DateTime.Now)
-                {
 
-                    return x;
-                }
-                else
-                {
-                    return null;
-                }
-
+                return x;
             }
+            else
+            {
+                return null;
+            }
+
+        }
         public HttpStatusCode AddProspection(AddProspectionModel Model, string pkey)
         {
-            
+
             if (CheckLicense(Guid.Parse(pkey)) == 0)
             {
                 string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
                 var Status = (api.PostSerializedProspections(url + "AddProspection", Model));
-                if(Status.IsCompletedSuccessfully)
+                if (Status.IsCompletedSuccessfully)
                 {
                     return Status.Result;
                 }
@@ -181,8 +181,8 @@ namespace YesSIMobileAPI.Data
 
         public List<ComProspectionOrigin> GetOrigin(string pkey)
         {
-          string url =  _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
-            return api.GetDeserializedComOrigins(url+"GetComOrigins");
+            string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
+            return api.GetDeserializedComOrigins(url + "GetComOrigins");
         }
         public List<ComProspectionKind> GetKinds(string pkey)
         {
@@ -199,7 +199,7 @@ namespace YesSIMobileAPI.Data
         public List<AdmTierTitle> GetAdmTitle(string pkey)
         {
             string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
-            return api.GetDeserializedTierTitle(url+ "GetAdmTierTitle");
+            return api.GetDeserializedTierTitle(url + "GetAdmTierTitle");
         }
 
         public List<CfgTranche> GetCfgTranche(string pkey)
@@ -217,8 +217,85 @@ namespace YesSIMobileAPI.Data
         public List<StkItemType> GetStkItemTypes(string pkey)
         {
             string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
-            return api.GetDeserializedItemType(url+"GetStkItemTypes");
+            return api.GetDeserializedItemType(url + "GetStkItemTypes");
+        }
+
+        public Object Habilitation(string Id, string pkey)
+        {
+                if(CheckLicense(Guid.Parse(pkey)) == 0){
+
+                string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == (Guid.Parse(pkey))).ServerUrl;
+                var Status = (api.GetDeserializedHabilitation(url + "Habilitation?Id=" + Id));
+                if (CheckLicense(Guid.Parse(pkey)) == 0)
+                {
+                    if (Status is null)
+                    {
+                        return null;
+                    }
+                    return Status;
+                }
+                return null;
+            }
+
+            return null;
+
+        }
+        public Object Details(string tranche,string categ, string pkey)
+        {
+            string url = _Context1.AdmLicenses.Find(Guid.Parse(pkey)).ServerUrl;
+            var Status = (api.GetDeserializedDetails(url + "details?categ=" + categ + "&tranche=" + tranche));
+            if (CheckLicense(Guid.Parse(pkey)) == 0)
+            {
+                if (Status is null)
+                {
+                    return null;
+                }
+                return Status;
+            }
+            return null;
+
+        }
+
+
+        /**********************************************************/
+
+        public HttpStatusCode addAction(ComActionMessage action, string pkey)
+        {
+            Guid Licence = Guid.Parse(pkey);
+            string url = _Context1.AdmLicenses.Find(Licence).ServerUrl;
+            var Status = (api.PostSerializedAddComActions(url + "addAction", action));
+            if (Status.IsCompletedSuccessfully)
+            {
+                return Status.Result;
+            }
+            return Status.Result;
+        }
+        public HttpStatusCode updateAction(ComActionMessage action, string pkey)
+        {
+            Guid Licence = Guid.Parse(pkey);
+            string url = _Context1.AdmLicenses.Find(Licence).ServerUrl;
+            var Status = (api.PostSerializedUpdateComActions(url + "addAction", action));
+            if (Status.IsCompletedSuccessfully)
+            {
+                return Status.Result;
+            }
+            return Status.Result;
+        }
+
+        public List<ComActionMessage> getActions(Guid Id, string pkey)
+        {
+            Guid Licence = Guid.Parse(pkey);
+            string url = _Context1.AdmLicenses.Find(Licence).ServerUrl;
+            return api.GetDeserializedComActions(url + "getActions?user=" + Id);
+        }
+
+        public List<ComActionMessageType> getComActionMessageTypes(string pkey)
+        {
+
+            string url = _Context1.AdmLicenses.Find(Guid.Parse(pkey)).ServerUrl;
+            return api.GetDeserializedComActionMessagetypes(url + "getComActionMessageTypes");
         }
 
     }
 }
+

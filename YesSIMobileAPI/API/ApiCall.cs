@@ -27,21 +27,21 @@ namespace YesSIMobileAPI.API
 
             else
             {
-                return response.Data;
+                return JsonConvert.DeserializeObject<AdmUser>(response.Content);
             }
             
                  
         }
-        public List<AddProspectionModel> GetDeserializedComProspections(string url)
+        public List<Object> GetDeserializedComProspections(string url)
         {
             this.Client = new RestClient(url);
-            var response = Client.Execute<List<AddProspectionModel>>(new RestRequest());
+            var response = Client.Execute<List<Object>>(new RestRequest());
 
             if (response.Content == "") { return null; }
 
             else
             {
-                return JsonConvert.DeserializeObject<List<AddProspectionModel>>(response.Content);
+                return JsonConvert.DeserializeObject<List<Object>>(response.Content);
             }
         }
         public List<ComProspection> GetDeserializedComProspections(string url,string criteria)
@@ -311,5 +311,30 @@ namespace YesSIMobileAPI.API
                 return JsonConvert.DeserializeObject<List<ComActionMessageType>>(response.Content);
             }
         }
+        public Object GetDeserializedHabilitation(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<Object>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<Object>(response.Content);
+            }
+        }
+        public Object GetDeserializedDetails(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<Object>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<Object>(response.Content);
+            }
+        }
+
     }
 }

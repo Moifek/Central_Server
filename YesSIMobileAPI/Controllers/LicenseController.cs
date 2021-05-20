@@ -176,7 +176,7 @@ namespace YesSIMobileAPI.Controllers
             return Ok(Kinds);
         }
 
-        [HttpPost (nameof(SearchProspection)), Authorize]
+        [HttpGet (nameof(SearchProspection)), Authorize]
         public IActionResult SearchProspection(string criteria, string pkey)
         {
             var Search = _IAdmLicense.SearchProspections(criteria, pkey);
@@ -192,6 +192,49 @@ namespace YesSIMobileAPI.Controllers
         {
             return null;
         }
+        [HttpGet(nameof(Habilitation)), Authorize]
+            public IActionResult Habilitation(string Id, string pkey)
+        {
+            return Ok(_IAdmLicense.Habilitation(Id, pkey));
+        }
+        [HttpGet(nameof(Details)), Authorize]
+        public IActionResult Details(string tranche, string categ,string pkey)
+        {
+            return Ok(_IAdmLicense.Details(tranche,categ,pkey));
+        }
 
+        [HttpGet(nameof(getActions))]
+        public List<ComActionMessage> getActions(Guid Id, string pkey)
+        {
+
+            return _IAdmLicense.getActions(Id, pkey);
+
+        }
+        [HttpPost(nameof(addAction))]
+
+        public HttpStatusCode addAction(ComActionMessage action, string pkey)
+        {
+            return _IAdmLicense.addAction(action, pkey);
+
+        }
+
+        [HttpPost(nameof(updateAction))]
+
+        public HttpStatusCode updateAction(ComActionMessage action, string pkey)
+        {
+            return _IAdmLicense.updateAction(action, pkey);
+
+
+
+        }
+
+        [HttpGet(nameof(getComActionMessageTypes))]
+        public List<ComActionMessageType> getComActionMessageTypes(string pkey)
+        {
+
+            return _IAdmLicense.getComActionMessageTypes(pkey);
+
+
+        }
     }
 }

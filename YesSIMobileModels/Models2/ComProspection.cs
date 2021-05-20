@@ -43,6 +43,7 @@ namespace YesSIMobileModels.Models2
         [Column(TypeName = "decimal(26, 6)")]
         public decimal? AdvanceAmount { get; set; }
         public Guid? ComProspectionOriginId { get; set; }
+        [JsonProperty]
         public Guid? CfgProspectId { get; set; }
         [StringLength(1000)]
         [JsonProperty]
@@ -146,6 +147,7 @@ namespace YesSIMobileModels.Models2
         public virtual CfgTier CfgProposer { get; set; }
         [ForeignKey(nameof(CfgProspectId))]
         [InverseProperty(nameof(CfgTier.ComProspectionCfgProspects))]
+        [JsonProperty]
         public virtual CfgTier CfgProspect { get; set; }
         [ForeignKey(nameof(ComActionId))]
         [InverseProperty("ComProspections")]

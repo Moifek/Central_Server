@@ -64,7 +64,7 @@ namespace YesSIMobileAPI
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
 
-
+            //services.AddScoped<IActionsData, MockActionsData>();
             services.AddScoped<IAdmLicenseData, MockAdmLiceseData>();
             services.AddScoped<IAdmWebData, MockWebApi>();
 

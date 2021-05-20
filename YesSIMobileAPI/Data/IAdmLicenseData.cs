@@ -12,7 +12,9 @@ namespace YesSIMobileAPI.Data
 {
     public interface IAdmLicenseData
     {
-        List<AddProspectionModel> GetProspection(Guid pkey);
+        Object Habilitation(string Id, string pkey);
+        Object Details(string tranche, string categ, string pkey);
+        List<Object> GetProspection(Guid pkey);
 
         AdmUser VerifLicense(Guid pkey, string name, string pwd);
 
@@ -38,7 +40,10 @@ namespace YesSIMobileAPI.Data
 
         List<ComProspection> SearchProspections(string Criteria,string pkey);
 
-
+        List<ComActionMessage> getActions(Guid Id, string pkey);
+        HttpStatusCode addAction(ComActionMessage action, string pkey);
+        HttpStatusCode updateAction(ComActionMessage action, string pkey);
+        List<ComActionMessageType> getComActionMessageTypes(string pkey);
 
     }
 

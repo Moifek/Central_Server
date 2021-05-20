@@ -104,6 +104,13 @@ using YesSIOmraneMobileWebAdmin.API;
 #line hidden
 #nullable disable
 #nullable restore
+#line 15 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
+using Blazored.SessionStorage;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\ListLicenses.razor"
 using YesSIMobileModels.Models;
 

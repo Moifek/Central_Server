@@ -170,6 +170,7 @@ namespace YesSIMobileModels.Models2
         [JsonProperty]
         public string Description { get; set; }
         [StringLength(30)]
+        [JsonProperty]
         public string Phone { get; set; }
         [StringLength(30)]
         public string Phone1 { get; set; }
@@ -178,6 +179,7 @@ namespace YesSIMobileModels.Models2
         [StringLength(30)]
         public string Fax { get; set; }
         [StringLength(30)]
+        [JsonProperty]
         public string Mobile { get; set; }
         [Column("EMail")]
         [StringLength(100)]

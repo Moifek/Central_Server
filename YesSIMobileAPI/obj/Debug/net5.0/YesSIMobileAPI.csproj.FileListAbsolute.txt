@@ -1,3 +1,4 @@
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\YesSIMobileModels.deps.json
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\YesSIMobileModels.runtimeconfig.json
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\YesSIMobileModels.runtimeconfig.dev.json
@@ -13,6 +14,7 @@ C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\ref\
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\YesSIMobileAPI.pdb
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Humanizer.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\JObject.dll
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\MailKit.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
@@ -30,8 +32,10 @@ C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Micr
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\MimeKit.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\BouncyCastle.Crypto.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\RestSharp.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
@@ -39,7 +43,6 @@ C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\Syst
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\System.Runtime.Caching.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
@@ -67,6 +70,3 @@ C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\obj\Debug\net5.0\YesS
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\obj\Debug\net5.0\ref\YesSIMobileAPI.dll
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\obj\Debug\net5.0\YesSIMobileAPI.pdb
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\obj\Debug\net5.0\YesSIMobileAPI.genruntimeconfig.cache
-C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\MailKit.dll
-C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\MimeKit.dll
-C:\Users\hp\Documents\GitHub\Central_Server\YesSIMobileAPI\bin\Debug\net5.0\BouncyCastle.Crypto.dll
