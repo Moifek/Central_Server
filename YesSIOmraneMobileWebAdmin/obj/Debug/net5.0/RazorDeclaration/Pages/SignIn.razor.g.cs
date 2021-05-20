@@ -110,7 +110,7 @@ using YesSIOmraneMobileWebAdmin.API;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/signin")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class SignIn : SignInBase
     {
         #pragma warning disable 1998

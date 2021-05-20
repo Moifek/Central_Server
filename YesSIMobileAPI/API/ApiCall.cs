@@ -237,5 +237,79 @@ namespace YesSIMobileAPI.API
                 return HttpStatusCode.BadRequest;
             }
         }
+        public async Task<HttpStatusCode> PostSerializedAddComActions(string url, ComActionMessage action)
+
+        {
+            this.Client = new RestClient(url);
+            var request = new RestRequest(Method.POST);
+            string jsonToSend = JsonConvert.SerializeObject(action);
+            request.AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+
+            try
+            {
+                var result = await Client.ExecuteAsync(request);
+                if (result.IsSuccessful)
+                {
+                    return HttpStatusCode.OK;
+                }
+                return HttpStatusCode.NotFound;
+
+            }
+
+            catch (Exception e)
+            {
+                return HttpStatusCode.BadRequest;
+            }
+        }
+        public async Task<HttpStatusCode> PostSerializedUpdateComActions(string url, ComActionMessage action)
+
+        {
+            this.Client = new RestClient(url);
+            var request = new RestRequest(Method.POST);
+            string jsonToSend = JsonConvert.SerializeObject(action);
+            request.AddParameter("application/json; charset=utf-8", jsonToSend, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+
+            try
+            {
+                var result = await Client.ExecuteAsync(request);
+                if (result.IsSuccessful)
+                {
+                    return HttpStatusCode.OK;
+                }
+                return HttpStatusCode.NotFound;
+
+            }
+
+            catch (Exception e)
+            {
+                return HttpStatusCode.BadRequest;
+            }
+        }
+        public List<ComActionMessage> GetDeserializedComActions(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<List<ComActionMessage>>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<ComActionMessage>>(response.Content);
+            }
+        }
+        public List<ComActionMessageType> GetDeserializedComActionMessagetypes(string url)
+        {
+            this.Client = new RestClient(url);
+            var response = Client.Execute<List<ComActionMessageType>>(new RestRequest());
+
+            if (response.Content == "") { return null; }
+
+            else
+            {
+                return JsonConvert.DeserializeObject<List<ComActionMessageType>>(response.Content);
+            }
+        }
     }
 }
