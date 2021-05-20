@@ -13,6 +13,7 @@ using MailKit;
 using MimeKit;
 using System.Net;
 using Microsoft.Extensions.Configuration;
+using AdmRole =YesSIMobileAPI.Models.AdmRole;
 
 namespace YesSIMobileAPI.Data
 {
@@ -56,21 +57,23 @@ namespace YesSIMobileAPI.Data
             throw new NotImplementedException();
         }
 
-        public int UserAvailable(User user)
+        public AuthentificatedUser UserAvailable(User user)
             {
-                AdmUser query = _Context1.AdmUsers.FirstOrDefault(a => a.Email == user.UserName);
+                AdmUser query = _Context1.AdmUsers.FirstOrDefault(a => a.Email == user.UserName && a.Pass==user.Password);
+            var auth = new AuthentificatedUser();
+            if (query is null)
+                {
+                auth.UserName = null;
 
-                if (query is null)
-                {
-                    return 1;
-                }
-                if (query.Pass == user.Password)
-                {
-                    return 0;
+                return auth;
                 }
                 else
                 {
-                    return 2;
+          
+                auth.UserName = query.Pkey.ToString();
+                AdmRole role = _Context1.AdmRoles.FirstOrDefault(a => a.Pkey == query.WebRoleId);
+                auth.Role = role.Description;
+                return auth;
                 }
             }
 

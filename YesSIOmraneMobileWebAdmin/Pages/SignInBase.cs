@@ -10,6 +10,8 @@ using Newtonsoft.Json.Converters;
 using System.Net.Http;
 using YesSIMobileModels.Models;
 using System.Text;
+using Blazored.SessionStorage;
+
 
 namespace YesSIOmraneMobileWebAdmin.Pages
 {
@@ -17,13 +19,16 @@ namespace YesSIOmraneMobileWebAdmin.Pages
     {
         protected string Day { get; set; } = DateTime.Now.DayOfWeek.ToString();
 
-        protected User User { get; set; } = new User();
+        public User User { get; set; } = new User();
 
         [Inject]
         protected NavigationManager NAV { get; set; }
 
-        protected LoginUser LoginUser { get; set; } = new("Https://192.168.1.8:5001/"); 
-
+        protected LoginUser LoginUser { get; set; } = new("Https://192.168.100.32:5001/");
+        
+        public  AuthentificatedUser auth = new AuthentificatedUser() ;
+       public  bool errorMessage = false;
+        private readonly ISessionStorageService _session;
 
 
         //protected async Task HandleLoginState(User _user)
@@ -49,27 +54,39 @@ namespace YesSIOmraneMobileWebAdmin.Pages
             Console.WriteLine("reached HandleLogin");
             try
             {
-                var query = await LoginUser.ConfirmLoginState(this.User, "WebApi/GetUserLogin");
-
+                HttpResponseMessage query = await LoginUser.ConfirmLoginState(this.User, "WebApi/GetUserLogin");
+              
                 Console.WriteLine(query.StatusCode.ToString());
-                Console.WriteLine(query);
-
-                if (!(query.Content is null))
+               
+                                        
+                    if(query.IsSuccessStatusCode)
                 {
+                    var rep = await query.Content.ReadAsStringAsync();
+                    auth = JsonConvert.DeserializeObject<AuthentificatedUser>(rep);
+              
+                    
+                    
+                           await _session.SetItemAsStringAsync("user", auth.UserName);
+                           await _session.SetItemAsStringAsync("role", auth.Role);
+
+
+
                     NAV.NavigateTo("/List");
                     Console.WriteLine("reach");
 
                 }
                 else
                 {
-                    Console.WriteLine("api problem");
+                    errorMessage = true;
                 }
 
             }
             catch (Exception e)
             {
-
+                errorMessage = true;
                 Console.WriteLine("api problem",e);
+                Console.WriteLine(errorMessage);
+
             }
             
 

@@ -1,9 +1,10 @@
-﻿@page "/signin"
+﻿@page "/"
 @inherits SignInBase
 
 
+
 <div class="sign-form">
-    <p class="welcome-text">Hello @(string.IsNullOrEmpty(User.UserName) ? "User" : User.UserName) - Today is @Day</p>
+
     @*<input type="text" class="sign-input form-control" placeholder="Username" @oninput="HandleUserNameChanged" />*@
     <EditForm Model="User" OnValidSubmit="@HandleLogin">
         <DataAnnotationsValidator />
@@ -14,8 +15,13 @@
         <button class="sign-button btn btn-primary" type="submit">Sign in</button>
     </EditForm>
     <div class="signup">
-        <a href="/signup">Sign up</a> <br /><br />
         <a href="/forgotPasswordEmailReset">Forgot Password?</a>
     </div>
 
 </div>
+@if (@errorMessage)
+{
+    <p class="alert-danger">Donne invalide</p>
+};
+
+}

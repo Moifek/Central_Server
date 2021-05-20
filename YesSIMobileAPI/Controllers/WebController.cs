@@ -56,12 +56,13 @@ namespace YesSIMobileAPI.Controllers
             User user = new();
             user.UserName = UserName;
             user.Password = Password;
-            if (_IAdmWebData.UserAvailable(user) == 0) { return Ok("Login"); }
-            if (_IAdmWebData.UserAvailable(user) == 1) { return Unauthorized(); }
-            if (_IAdmWebData.UserAvailable(user) == 2) { return Unauthorized(); }
-            else { return Forbid(); }
+            var auth = _IAdmWebData.UserAvailable(user);
+            if (auth.UserName != null) { 
+                return Ok(auth);
+            }
+                return Unauthorized();
+            }
 
-        }
         [HttpPost(nameof(SetNewPassword))]
         public IActionResult SetNewPassword(string url, string password,string ID)
         {

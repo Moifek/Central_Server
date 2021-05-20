@@ -9,7 +9,7 @@ namespace YesSIMobileAPI.Data
     public interface IAdmWebData
     {
         public SysResetPasswordAppRequest GetServerUrl(string token);
-        public int UserAvailable(User user);
+        public AuthentificatedUser UserAvailable(User user);
         public List<AdmLicense> GetLicensees();
         public void Delete(Guid id);
         public bool AddProspection(string DateExpired, string MobileUsers, string ServerURL, string Description, string AdminEmail);
