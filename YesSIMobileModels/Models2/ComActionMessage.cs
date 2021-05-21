@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using YesSIMobileModels.Models;
+using Newtonsoft.Json;
 
 #nullable disable
 
 namespace YesSIMobileModels.Models2
 {
+    [JsonObject(MemberSerialization.OptIn)]
     [Table("ComActionMessage")]
     [Index(nameof(ComProspectionId), nameof(ComActionMessageCategoryId), Name = "_dta_index_ComActionMessage_7_1156915193__K13_K18")]
     [Index(nameof(ComActionMessageCategoryId), nameof(IsSystem), nameof(ComProspectionId), Name = "_dta_index_ComActionMessage_7_1156915193__K18_K31_K13_35")]
@@ -23,41 +26,55 @@ namespace YesSIMobileModels.Models2
 
         [Key]
         [Column("PKey")]
+        [JsonProperty]
         public Guid Pkey { get; set; }
         [Column(TypeName = "datetime")]
+        [JsonProperty]
         public DateTime? DocDate { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string Description { get; set; }
         public bool? IsIn { get; set; }
         public bool? WithoutRevival { get; set; }
         [Column(TypeName = "datetime")]
+        [JsonProperty]
         public DateTime? AlertValidityDate { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string UserName { get; set; }
+        [JsonProperty]
         public Guid? CfgEmployeeId { get; set; }
         public Guid? StkItemId { get; set; }
         public Guid? CfgTierId { get; set; }
+        [JsonProperty]
         public Guid? ComProspectionId { get; set; }
         public Guid? ComFolderId { get; set; }
         public Guid? ComSaleWithdrawalCancellationId { get; set; }
         public Guid? ComSaleWithdrawalClientId { get; set; }
         public Guid? ComSaleWithdrawalProductId { get; set; }
+        [JsonProperty]
         public Guid? ComActionMessageCategoryId { get; set; }
         public Guid? ComActionMessageSubCategoryId { get; set; }
+        [JsonProperty]
         public Guid? ComActionMessageTypeId { get; set; }
         public Guid? ComFolderStatusId { get; set; }
         [StringLength(255)]
+        [JsonProperty]
         public string UserCreate { get; set; }
         [Column(TypeName = "datetime")]
+        [JsonProperty]
         public DateTime? UserCreateDateTime { get; set; }
         [StringLength(255)]
         public string UserUpdate { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? UserUpdateDateTime { get; set; }
         public bool? IsUnpaid { get; set; }
-        public Guid? AdmUserId { get; set; }
+        [JsonProperty]
+        public Guid AdmUserId { get; set; }
+        [JsonProperty]
         public Guid? ComActionMessageId { get; set; }
         public Guid? ComDocumentId { get; set; }
+        [JsonProperty]
         public string AlertMessage { get; set; }
         public bool? IsSystem { get; set; }
         public Guid? SavClaimId { get; set; }
@@ -73,6 +90,7 @@ namespace YesSIMobileModels.Models2
         public virtual AdmEvent AdmEvent { get; set; }
         [ForeignKey(nameof(AdmUserId))]
         [InverseProperty("ComActionMessages")]
+        [JsonProperty]
         public virtual AdmUser2 AdmUser { get; set; }
         [ForeignKey(nameof(CfgEmployeeId))]
         [InverseProperty("ComActionMessageCfgEmployees")]

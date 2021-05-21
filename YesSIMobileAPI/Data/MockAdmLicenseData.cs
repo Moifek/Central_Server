@@ -263,7 +263,8 @@ namespace YesSIMobileAPI.Data
         {
             Guid Licence = Guid.Parse(pkey);
             string url = _Context1.AdmLicenses.Find(Licence).ServerUrl;
-            var Status = (api.PostSerializedAddComActions(url + "addAction", action));
+            ComActionMessage actionTrue = action;
+            var Status = (api.PostSerializedAddComActions(url + "addAction", actionTrue));
             if (Status.IsCompletedSuccessfully)
             {
                 return Status.Result;
