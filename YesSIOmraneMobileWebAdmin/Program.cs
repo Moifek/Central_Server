@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Authorization;
+using YesSIOmraneMobileWebAdmin.Providers;
+
 
 namespace YesSIOmraneMobileWebAdmin
 {
@@ -19,6 +22,10 @@ namespace YesSIOmraneMobileWebAdmin
 
             builder.Services.AddTransient(sp => 
                 new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddScoped<AuthenticationStateProvider, AuthState>();
+            builder.Services.AddOptions();
+            builder.Services.AddAuthorizationCore();
+           
 
 
 

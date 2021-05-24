@@ -3,25 +3,30 @@
 
 
 
-<div class="sign-form">
 
-    @*<input type="text" class="sign-input form-control" placeholder="Username" @oninput="HandleUserNameChanged" />*@
+
+
+<div class="container">
+    <center> <img src="/assets/logo-omran-final.jpg" height="150" width="200" /></center>
     <EditForm Model="User" OnValidSubmit="@HandleLogin">
         <DataAnnotationsValidator />
-        <ValidationInput @bind-value="@User.UserName" PlaceHolder="UserName"></ValidationInput>
-        <ValidationInput @bind-value="@User.Password" PlaceHolder="Password"></ValidationInput>
-        @*<input type="password" class="sign-input form-control" placeholder="password" required />*@
+
+        <InputText @bind-Value="@User.UserName" PlaceHolder="Adresse email" class="form-control inputText"></InputText>
+        <InputText type="password" @bind-Value="@User.Password" PlaceHolder="Mot de passe" class="form-control inputText"> </InputText>
         <ValidationSummary />
-        <button class="sign-button btn btn-primary" type="submit">Sign in</button>
+        <div class="divButton">
+            <button class="btn confirmButton" type="submit">Se connecter</button>
+        </div>
     </EditForm>
     <div class="signup">
-        <a href="/forgotPasswordEmailReset">Forgot Password?</a>
+        <a href="/forgotPasswordEmailReset">Mot de passe oublié</a>
     </div>
 
-</div>
-@if (@errorMessage)
-{
-    <p class="alert-danger">Donne invalide</p>
-};
 
-}
+    @if (@errorMessage)
+    {
+        <p class="alert-danger">Donne invalide</p>
+
+
+    }
+</div>
