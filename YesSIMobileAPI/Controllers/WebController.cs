@@ -64,9 +64,9 @@ namespace YesSIMobileAPI.Controllers
             }
 
         [HttpPost(nameof(SetNewPassword))]
-        public IActionResult SetNewPassword(string url, string password,string ID)
+        public IActionResult SetNewPassword(string url, string password,string ID,string token)
         {
-            switch (_IAdmWebData.SetNewPassword(url, password,ID))
+            switch (_IAdmWebData.SetNewPassword(url, password,ID,token))
             {
                 case (0):
                     return Ok("User Found and updated !");

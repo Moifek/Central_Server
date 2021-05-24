@@ -13,6 +13,13 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Licences
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
+#line 1 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
+using System.Net.Http;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 2 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
 using System.Net.Http.Json;
 
@@ -69,6 +76,20 @@ using YesSIOmraneMobileWebAdmin;
 #line hidden
 #nullable disable
 #nullable restore
+#line 10 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
+using YesSIOmraneMobileWebAdmin.Shared;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
+using YesSIOmraneMobileWebAdmin.Widgets;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 12 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
 using YesSIOmraneMobileWebAdmin.Pages;
 
@@ -92,41 +113,6 @@ using YesSIOmraneMobileWebAdmin.API;
 #nullable restore
 #line 15 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
 using Blazored.SessionStorage;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 1 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\AddLicense.razor"
-using YesSIOmraneMobileWebAdmin.Shared;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\AddLicense.razor"
-using System.Net.Http;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\AddLicense.razor"
-using System.Text;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 4 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\AddLicense.razor"
-using YesSIOmraneMobileWebAdmin.Widgets;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 9 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\AddLicense.razor"
-using Newtonsoft.Json;
 
 #line default
 #line hidden
