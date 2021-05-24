@@ -1,0 +1,57 @@
+﻿@using YesSIMobileModels.Models
+@page "/ListWorkers"
+@inject HttpClient Http
+
+<h1>License Data</h1>
+<p>This component demonstrates fetching License data from the server.</p>
+<p>
+    <a href="/AddLicense">Create New</a>
+</p>
+@if (List2 == null)
+{
+    <p><em>Loading...</em></p>
+    <p>@List2.ToString()</p>
+}
+else
+{
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Pkey</th>
+                <th>Description</th>
+                <th>Email</th>
+                <th>mobile</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var emp in List2)
+            {
+                <tr>
+                    <td>@emp.Pkey</td>
+                    <td>@emp.Description</td>
+                    <td>@emp.Email</td>
+                    <td>@emp.Mobile</td>
+                    <td>
+                        <a href='/editLicense/@emp.Pkey'>Edit</a>
+                        <button class="btn"><i class="fa fa-close"></i></button>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+
+@code{
+        AdmUser[] List2 = { };
+
+        HttpClient Client = new();
+protected override async Task OnInitializedAsync()
+    {
+        List2 = await Client.GetFromJsonAsync<AdmUser[]>("https://192.168.1.8:5001/WebApi/GetWorkersList");
+
+    }
+
+}
+}
