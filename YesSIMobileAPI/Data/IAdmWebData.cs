@@ -15,7 +15,7 @@ namespace YesSIMobileAPI.Data
         public bool AddProspection(string DateExpired, string MobileUsers, string ServerURL, string Description, string AdminEmail);
         public AdmLicense GetSpecificLicense(string pkey);
         public bool UpdateLicense(string pkey, string DateExpired, string MobileUsers, string ServerURL, string Description, string AdminEmail);
-        int SetNewPassword(string pwd, string pkey,string ID);
+        int SetNewPassword(string pwd, string pkey,string ID,string token);
         int SendResetMail(string pkey, string email);
     }
 }

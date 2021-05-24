@@ -201,9 +201,9 @@ namespace YesSIMobileAPI.Data
                     MailMessage mm = new(from, to);
                     mm.Subject = "Password Recovery";                               // Must Decrypt before using this function for real
                     mm.Body = string.Format("Hi" + User.Description + ",<br /><br />Your password is " + User.Pass + " .<br /><br />Thank You.<br />or you can use" +
-                        "this link to reset your password :" + "Https://LocalHost:5003/Forgot-Password/" + Link + " <br />");
+                        "this link to reset your password :" + "Https://192.168.1.102:5003/Forgot-Password/" + Link + " <br />");
                     mm.IsBodyHtml = true;
-                    SmtpClient smtpClient = new("smtp.gmail.com", Convert.ToInt32(587));
+                    SmtpClient smtpClient = new("smtp.netfirms.com", Convert.ToInt32(465));
                     NetworkCredential credentials = new(configuration["EmailAdress"], configuration["EmailPassword"]);
                     smtpClient.UseDefaultCredentials = true;
                     smtpClient.Credentials = credentials;
@@ -220,7 +220,7 @@ namespace YesSIMobileAPI.Data
                 throw;
             }
         }
-        public int SetNewPassword(string url, string pwd,string ID)
+        public int SetNewPassword(string url, string pwd,string ID,string token)
         {
             
             try
@@ -232,6 +232,8 @@ namespace YesSIMobileAPI.Data
                 try
                 {
                     Api.PostSerializedSetNewPassword(url+"SetNewPassword", TempUser);
+                    _Context1.SysResetPasswordAppRequests.Find(Guid.Parse(token)).Valid = false;
+                    _Context1.SaveChanges();
                     return 0;
                 }
                 catch (Exception)

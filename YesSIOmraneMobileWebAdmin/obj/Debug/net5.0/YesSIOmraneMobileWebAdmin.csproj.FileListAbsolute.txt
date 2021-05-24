@@ -1019,3 +1019,5 @@ C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\build-gz\FgfvULXp.gz
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\build-gz\hzJKet+F.gz
 C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\build-gz\a0Q5TylL.gz
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\RazorDeclaration\Pages\Workers\ListWorkers.razor.g.cs
+C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\obj\Debug\net5.0\Razor\Pages\Workers\ListWorkers.razor.g.cs

@@ -27,7 +27,7 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Services
                 {
                     User.Pass = password;
                     User.Pkey = row.UserId;
-                    var PassTask = await Api.UpdatePassword(User, "WebApi/SetNewPassword", row.ServerUrl);
+                    var PassTask = await Api.UpdatePassword(User, "WebApi/SetNewPassword", row.ServerUrl, Token);
                     NAV.NavigateTo("/List");
                 }
                 catch (Exception)

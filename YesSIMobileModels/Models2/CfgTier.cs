@@ -183,6 +183,7 @@ namespace YesSIMobileModels.Models2
         public string Mobile { get; set; }
         [Column("EMail")]
         [StringLength(100)]
+        [JsonProperty]
         public string Email { get; set; }
         [StringLength(100)]
         public string WebSite { get; set; }
