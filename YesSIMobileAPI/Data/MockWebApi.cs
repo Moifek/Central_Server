@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using YesSIMobileAPI.Data;
 using System.Threading.Tasks;
+using YesSIMobileAPI.Services;
 using YesSIMobileAPI.Models;
 using YesSIMobileModels.Models2;
 using System.Net.Mail;
@@ -14,6 +15,8 @@ using MimeKit;
 using System.Net;
 using Microsoft.Extensions.Configuration;
 using AdmRole =YesSIMobileAPI.Models.AdmRole;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace YesSIMobileAPI.Data
 {
@@ -57,24 +60,47 @@ namespace YesSIMobileAPI.Data
             throw new NotImplementedException();
         }
 
-        public AuthentificatedUser UserAvailable(User user)
+        public AuthentificatedUser UserAvailable(User user,string pkey)
             {
-                AdmUser query = _Context1.AdmUsers.FirstOrDefault(a => a.Email == user.UserName && a.Pass==user.Password);
             var auth = new AuthentificatedUser();
-            if (query is null)
-                {
-                auth.UserName = null;
+            if (pkey is null)
+            {
+                AdmUser Account = _Context1.AdmUsers.FirstOrDefault(a => (a.Email == user.UserName));
+                var hashPass = Encryption.Encrypt(Encryption.GetHashKey("Veuillez vérifier que tout les champs sont saisis !" + Account.Pkey), user.Password);
+                AdmUser query = _Context1.AdmUsers.FirstOrDefault(a => a.Email == user.UserName && a.Pass == hashPass);
 
-                return auth;
+                if (query is null)
+                {
+                    auth.UserName = null;
+                    return auth;
                 }
                 else
                 {
-          
-                auth.UserName = query.Pkey.ToString();
-                AdmRole role = _Context1.AdmRoles.FirstOrDefault(a => a.Pkey == query.WebRoleId);
-                auth.Role = role.Description;
-                return auth;
+                    auth.UserName = user.UserName; //email
+                    auth.Role = "ADMIN";
+                    return auth;
                 }
+            }
+            if (pkey is not null)
+                 {
+                //string url = _Context1.AdmLicenses.Find(Guid.Parse(pkey)).ServerUrl;
+                //AdmUser query = _Context1.AdmUsers.FirstOrDefault(a => a.Email == user.UserName && a.Pass == user.Password);
+                //if (query is null)
+                //{
+                //    auth.UserName = null;
+
+                //    return auth;
+                //}
+                //else
+                //{
+
+                //    auth.UserName = user.UserName; //email
+                //    auth.Role = "ADMIN";
+                //    return auth;
+                //}
+            }
+            auth.UserName = null;
+            return auth;
             }
 
         public List<AdmUser> VerifLicense(Guid pkey, string name, string pwd)
@@ -124,7 +150,7 @@ namespace YesSIMobileAPI.Data
             {
                 return _Context1.AdmLicenses.Find(Guid.Parse(pkey));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
@@ -191,6 +217,7 @@ namespace YesSIMobileAPI.Data
             string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
             try
             {
+                ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
                 AdmUser User = Api.PostDeserializedAdmUser(url + "GetUserByEmail", email);
                 if (User is not null)
                 {
@@ -199,17 +226,18 @@ namespace YesSIMobileAPI.Data
                     MailAddress from = new(configuration["EmailAdress"]);
                     MailAddress to = new(email);
                     MailMessage mm = new(from, to);
-                    mm.Subject = "Password Recovery";                               // Must Decrypt before using this function for real
+                    mm.Subject = "Password Recovery";                               
+                    mm.Priority = MailPriority.High;
+                    mm.IsBodyHtml = true;                                  
                     mm.Body = string.Format("Hi" + User.Description + ",<br /><br />Your password is " + User.Pass + " .<br /><br />Thank You.<br />or you can use" +
-                        "this link to reset your password :" + "Https://192.168.1.102:5003/Forgot-Password/" + Link + " <br />");
-                    mm.IsBodyHtml = true;
+                       "this link to reset your password :" + "Https://192.168.1.102:5003/Forgot-Password/" + Link + " <br />");
                     SmtpClient smtpClient = new("smtp.netfirms.com", Convert.ToInt32(465));
                     NetworkCredential credentials = new(configuration["EmailAdress"], configuration["EmailPassword"]);
                     smtpClient.UseDefaultCredentials = true;
                     smtpClient.Credentials = credentials;
                     smtpClient.EnableSsl = true;
                     smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    smtpClient.Send(mm);
+                    smtpClient.SendAsync(mm,null);
                     return 0;
                 }
                 return 1;

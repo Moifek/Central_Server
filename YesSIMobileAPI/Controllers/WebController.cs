@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using YesSIMobileAPI.Models;
-
+using Microsoft.AspNetCore.Authentication;
 
 namespace YesSIMobileAPI.Controllers
 {
@@ -51,17 +51,32 @@ namespace YesSIMobileAPI.Controllers
 
         [HttpPost]
         [Route("GetUserLogin")]
-        public IActionResult UserLogin(string Password, string UserName)
+        public IActionResult UserLogin(string Password, string UserName,string pkey)
         {
             User user = new();
             user.UserName = UserName;
             user.Password = Password;
-            var auth = _IAdmWebData.UserAvailable(user);
-            if (auth.UserName != null) { 
+            var auth = _IAdmWebData.UserAvailable(user,pkey);
+            if (auth.UserName != null) {
+                var claim = new Claim(ClaimTypes.Name, user.UserName); // i put the email in claimsTypes.Name
+                var claimsIdentity = new ClaimsIdentity(new[] { claim }, "serverAuth");
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                HttpContext.SignInAsync(claimsPrincipal);
                 return Ok(auth);
             }
                 return Unauthorized();
             }
+        [HttpGet(nameof(GetCurrentStateUser))]
+        public async Task<ActionResult<AuthentificatedUser>> GetCurrentStateUser()
+        {
+            AuthentificatedUser currentUser = new();
+            if (User.Identity.IsAuthenticated)
+            {
+                currentUser.UserName = User.FindFirstValue(ClaimTypes.Name);
+            }
+
+            return await Task.FromResult(currentUser);
+        }
 
         [HttpPost(nameof(SetNewPassword))]
         public IActionResult SetNewPassword(string url, string password,string ID,string token)

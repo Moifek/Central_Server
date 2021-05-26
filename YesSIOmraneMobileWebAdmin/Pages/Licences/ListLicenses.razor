@@ -1,13 +1,13 @@
 ﻿@using YesSIMobileModels.Models
 @page "/List"
 @inject HttpClient Http
-
+@inject AuthenticationStateProvider _AuthState
 
 
 
    <NavMenu></NavMenu>
 
-
+<h4>Logged in as</h4>
 <h1>License Data</h1>
 
 <p>
@@ -63,7 +63,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         //List2 = await Client.GetFromJsonAsync<AdmLicense[]>("http://192.168.1.103:5000/WebApi/GetLicenseList");
-        List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://192.168.1.8:5001/WebApi/GetLicenseList");
+        List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://192.168.1.102:5001/WebApi/GetLicenseList");
 
     }
 

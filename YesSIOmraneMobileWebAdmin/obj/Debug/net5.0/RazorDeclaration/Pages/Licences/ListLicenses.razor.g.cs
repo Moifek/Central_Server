@@ -111,6 +111,13 @@ using Blazored.SessionStorage;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\ListLicenses.razor"
 using YesSIMobileModels.Models;
 
@@ -126,7 +133,7 @@ using YesSIMobileModels.Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 52 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\ListLicenses.razor"
+#line 58 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\ListLicenses.razor"
       
 
     AdmLicense[] List2 = { };
@@ -135,7 +142,7 @@ using YesSIMobileModels.Models;
     protected override async Task OnInitializedAsync()
     {
         //List2 = await Client.GetFromJsonAsync<AdmLicense[]>("http://192.168.1.103:5000/WebApi/GetLicenseList");
-        List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://192.168.1.8:5001/WebApi/GetLicenseList");
+        List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://192.168.1.102:5001/WebApi/GetLicenseList");
 
     }
 
@@ -143,6 +150,7 @@ using YesSIMobileModels.Models;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider _AuthState { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private HttpClient Http { get; set; }
     }
 }

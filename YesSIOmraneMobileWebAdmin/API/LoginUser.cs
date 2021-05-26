@@ -7,10 +7,11 @@ using YesSIMobileModels.Models;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace YesSIOmraneMobileWebAdmin.API
 {
-    public class LoginUser
+    public class LoginUser 
     {
         HttpClient _HttpClient;
         public LoginUser(string url) 

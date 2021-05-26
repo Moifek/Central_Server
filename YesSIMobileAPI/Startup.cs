@@ -20,6 +20,7 @@ using System.Net;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace YesSIMobileAPI
 {
@@ -40,7 +41,13 @@ namespace YesSIMobileAPI
     .ServerCertificateValidationCallback +=
     (sender, cert, chain, sslPolicyErrors) => true;
 
-          
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }
+            ).AddCookie();
+
 
             services.AddControllers()
             .AddNewtonsoftJson();
@@ -86,7 +93,7 @@ namespace YesSIMobileAPI
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
-
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

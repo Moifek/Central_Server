@@ -17,17 +17,15 @@ namespace YesSIOmraneMobileWebAdmin.Pages
 {
     public class SignInBase : ComponentBase
     {
-        protected string Day { get; set; } = DateTime.Now.DayOfWeek.ToString();
-
         public User User { get; set; } = new User();
 
         [Inject]
         protected NavigationManager NAV { get; set; }
 
-        protected LoginUser LoginUser { get; set; } = new("Https://192.168.100.32:5001/");
+        protected LoginUser LoginUser { get; set; } = new("Https://192.168.1.102:5001/");
         
-        public  AuthentificatedUser auth = new AuthentificatedUser() ;
-       public  bool errorMessage = false;
+        public  AuthentificatedUser auth = new() ;
+        public  bool errorMessage = false;
         private readonly ISessionStorageService _session;
 
 
@@ -55,23 +53,12 @@ namespace YesSIOmraneMobileWebAdmin.Pages
             try
             {
                 HttpResponseMessage query = await LoginUser.ConfirmLoginState(this.User, "WebApi/GetUserLogin");
-              
+
                 Console.WriteLine(query.StatusCode.ToString());
-               
-                                        
-                    if(query.IsSuccessStatusCode)
+           
+                if(query.IsSuccessStatusCode)
                 {
-                    var rep = await query.Content.ReadAsStringAsync();
-                    auth = JsonConvert.DeserializeObject<AuthentificatedUser>(rep);
-              
-                    
-                    
-                           await _session.SetItemAsStringAsync("user", auth.UserName);
-                           await _session.SetItemAsStringAsync("role", auth.Role);
-
-
-
-                    NAV.NavigateTo("/List");
+                    NAV.NavigateTo("/List", true);
                     Console.WriteLine("reach");
 
                 }

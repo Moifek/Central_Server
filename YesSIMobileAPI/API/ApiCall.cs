@@ -187,7 +187,7 @@ namespace YesSIMobileAPI.API
                 return HttpStatusCode.NotFound;
                 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return HttpStatusCode.BadRequest;
             }
@@ -210,7 +210,7 @@ namespace YesSIMobileAPI.API
                 return HttpStatusCode.NotFound;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return HttpStatusCode.BadRequest;
             }
@@ -232,7 +232,7 @@ namespace YesSIMobileAPI.API
                 return HttpStatusCode.NotFound;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return HttpStatusCode.BadRequest;
             }
@@ -257,7 +257,7 @@ namespace YesSIMobileAPI.API
 
             }
 
-            catch (Exception e)
+            catch (Exception)
             {
                 return HttpStatusCode.BadRequest;
             }
@@ -282,7 +282,7 @@ namespace YesSIMobileAPI.API
 
             }
 
-            catch (Exception e)
+            catch (Exception)
             {
                 return HttpStatusCode.BadRequest;
             }
