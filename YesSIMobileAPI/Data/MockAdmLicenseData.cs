@@ -132,12 +132,12 @@ namespace YesSIMobileAPI.Data
             }
         }
 
-        public List<Object> GetProspection(Guid id)
+        public List<Object> GetProspection(Guid id,int page,string user)
         {
             var License = _Context1.AdmLicenses.Find(id);
             if (License != null)
             {
-                var item = (api.GetDeserializedComProspections(License.ServerUrl + "GetProspections"));
+                var item = (api.GetDeserializedComProspections(License.ServerUrl + "GetProspections"+"?page="+page+"&Id="+user));
                 if (item != null) { return item; }
 
                 return null;

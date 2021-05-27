@@ -14,7 +14,7 @@ namespace YesSIMobileAPI.Data
     {
         Object Habilitation(string Id, string pkey);
         Object Details(string tranche, string categ, string pkey);
-        List<Object> GetProspection(Guid pkey);
+        List<Object> GetProspection(Guid pkey,int page,string user);
 
         AdmUser VerifLicense(Guid pkey, string name, string pwd);
 

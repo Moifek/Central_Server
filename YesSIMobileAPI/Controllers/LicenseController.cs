@@ -42,9 +42,9 @@ namespace YesSIMobileAPI.Controllers
 
         [HttpGet, Authorize]
         [Route("GetProspection")]
-        public IActionResult GetProspections(Guid id)
+        public IActionResult GetProspections(Guid id,int page,string user)
         {
-            var query = _IAdmLicense.GetProspection(id);
+            var query = _IAdmLicense.GetProspection(id,page,user);
             if ( query == null)
             {
                 return NoContent();
