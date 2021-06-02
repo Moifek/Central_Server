@@ -202,10 +202,10 @@ namespace YesSIMobileAPI.Data
             return api.GetDeserializedTierTitle(url + "GetAdmTierTitle");
         }
 
-        public List<CfgTranche> GetCfgTranche(string pkey)
+        public List<CfgTranche> GetCfgTranche(string pkey,string Id)
         {
             string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
-            return api.GetDeserializedCfgTranche(url + "GetCfgTranche");
+            return api.GetDeserializedCfgTranche(url + "GetCfgTranche"+"&Id="+Id);
         }
 
         public List<StkItemCategory> GetStkItemCategories(string pkey)
