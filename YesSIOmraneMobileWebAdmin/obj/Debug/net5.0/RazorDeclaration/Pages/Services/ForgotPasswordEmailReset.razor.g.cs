@@ -117,13 +117,6 @@ using Blazored.SessionStorage;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 16 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
-using Microsoft.AspNetCore.Components.Authorization;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/forgotPasswordEmailReset")]
     public partial class ForgotPasswordEmailReset : ForgotPasswordEmailResetBase
     {

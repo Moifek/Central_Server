@@ -7273,23 +7273,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hp\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Documents\\GitHub\\Central_Server\\YesSIMobileAPI\\YesSIMobileAPI.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Documents\\GitHub\\Central_Server\\YesSIMobileAPI\\YesSIMobileAPI.csproj",
       "projectName": "YesSIMobileAPI",
-      "projectPath": "C:\\Users\\hp\\Documents\\GitHub\\Central_Server\\YesSIMobileAPI\\YesSIMobileAPI.csproj",
-      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Documents\\GitHub\\Central_Server\\YesSIMobileAPI\\obj\\",
+      "projectPath": "C:\\Users\\HP\\Documents\\GitHub\\Central_Server\\YesSIMobileAPI\\YesSIMobileAPI.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP\\Documents\\GitHub\\Central_Server\\YesSIMobileAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7303,8 +7299,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\hp\\Documents\\GitHub\\Central_Server\\YesSIMobileModels\\YesSIMobileModels.csproj": {
-              "projectPath": "C:\\Users\\hp\\Documents\\GitHub\\Central_Server\\YesSIMobileModels\\YesSIMobileModels.csproj"
+            "C:\\Users\\HP\\Documents\\GitHub\\Central_Server\\YesSIMobileModels\\YesSIMobileModels.csproj": {
+              "projectPath": "C:\\Users\\HP\\Documents\\GitHub\\Central_Server\\YesSIMobileModels\\YesSIMobileModels.csproj"
             }
           }
         }
@@ -7398,7 +7394,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
