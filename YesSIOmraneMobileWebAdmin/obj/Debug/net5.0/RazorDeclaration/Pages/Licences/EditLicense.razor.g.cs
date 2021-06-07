@@ -111,6 +111,13 @@ using Blazored.SessionStorage;
 #line hidden
 #nullable disable
 #nullable restore
+#line 16 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\_Imports.razor"
+using Microsoft.AspNetCore.Components.Authorization;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
 #line 1 "C:\Users\hp\Documents\GitHub\Central_Server\YesSIOmraneMobileWebAdmin\Pages\Licences\EditLicense.razor"
 using YesSIMobileModels.Models;
 

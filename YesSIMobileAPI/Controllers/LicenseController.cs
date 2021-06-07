@@ -144,9 +144,9 @@ namespace YesSIMobileAPI.Controllers
         }
 
         [HttpGet(nameof(GetCfgTranches)), Authorize]
-        public IActionResult GetCfgTranches(string pkey)
+        public IActionResult GetCfgTranches(string pkey,string Id)
         {
-            List<CfgTranche> Kinds = _IAdmLicense.GetCfgTranche(pkey);
+            List<CfgTranche> Kinds = _IAdmLicense.GetCfgTranche(pkey,Id);
             if ((Kinds is null))
             {
                 return NotFound(Kinds);
