@@ -31,7 +31,7 @@ namespace YesSIMobileAPI.Data
 
             public void Delete(Guid id)
             {
-                AdmLicense License = (AdmLicense)_Context1.AdmLicenses.Where(x => x.Pkey.Equals(id));
+                AdmLicense License = _Context1.AdmLicenses.FirstOrDefault(x => x.Pkey == id);
                 _Context1.AdmLicenses.Remove(License);
                 _Context1.SaveChanges();
             }
@@ -94,12 +94,19 @@ namespace YesSIMobileAPI.Data
                 License.AdmUserEmail = AdminEmail;
                 try
                 {
-                    License.AdmUserId = _Context1.AdmUsers.FirstOrDefault(a => a.Email == AdminEmail).Pkey;
+                    if (_Context1.AdmUsers.FirstOrDefault(a => a.Email == AdminEmail) == null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        License.AdmUserId = _Context1.AdmUsers.FirstOrDefault(a => a.Email == AdminEmail).Pkey;
+                    }
+                    
                 }
                 catch (Exception)
                 {
-
-                    return false;
+                    throw;
                 }
                
                 License.UserNumber = int.Parse(MobileUsers);

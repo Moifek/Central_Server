@@ -3,6 +3,7 @@ using System;
 using YesSIOmraneMobileWebAdmin.API;
 using YesSIMobileModels.Models;
 using System.Collections.Generic;
+using YesSIOmraneMobileWebAdmin;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,13 +15,16 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Licences
         [Parameter]
         public string LicenseID { get; set; }
 
+        protected Constants Const { get; set; } = new();
+
         protected AdmLicense License { get; set; } = new();
 
-        private ApiCaller Api { get; set; } = new("https://192.168.1.8:5001/");
+        private ApiCaller Api { get; set; }
 
         protected async Task OnIOnInitializedAsync()
         {
-            License = await Api.GetSpecificLicense(LicenseID, "WebApi/GetSpecificLicense");
+            Api = new ApiCaller(Const.URL);
+            License = await Api.GetSpecificLicense(LicenseID, "GetSpecificLicense");
         }
 
 

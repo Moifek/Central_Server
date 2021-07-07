@@ -21,19 +21,17 @@ namespace YesSIMobileAPI.Controllers
     public class WebController : ControllerBase
     {
         private readonly IAdmWebData _IAdmWebData;
-        //private readonly AppSettings _appSettings;
-
 
         public WebController(IAdmWebData IAdmWebData)
         {
             _IAdmWebData = IAdmWebData;
         }
 
-        [HttpDelete]
+        [HttpGet]
         [Route("DeleteLicense")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(string id)
         {
-            _IAdmWebData.Delete(id);
+            _IAdmWebData.Delete(Guid.Parse(id));
             return Ok("deleted");
         }
 
@@ -43,11 +41,6 @@ namespace YesSIMobileAPI.Controllers
         {
             return _IAdmWebData.GetLicensees();
         }
-
-        /* public UsersController(AppSettings appSettings)
-         {
-             _appSettings = appSettings;
-         }*/
 
         [HttpPost]
         [Route("GetUserLogin")]
@@ -81,49 +74,55 @@ namespace YesSIMobileAPI.Controllers
             }
         }
 
-        //[HttpPost("authenticate")]
-        //[AllowAnonymous]
-        //public IActionResult Authenticate([FromBody] AuthUser user)
-        //{
-        //    var foundUser = Users.FirstOrDefault(u => u.UserName == user.UserName && u.Password == user.Password);
-        //    if(foundUser == null)
-        //    {
 
-        //        return BadRequest(new { message = "User name or password invalid" });
-        //    }
 
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-        //    var claims = new Claim[]
-        //    {
-        //        new Claim("id",foundUser.Id.ToString()), 
-        //        new Claim(ClaimTypes.Role,"admin")
-        //    };
+        /*
+         /// <summary>
+        ///  Cette fonction n'es pat complete / gére l'authentification d'utilisateur web 
+        /// </summary>
+        [HttpPost("authenticate")]
+        [AllowAnonymous]
+        public IActionResult Authenticate([FromBody] AuthUser user)
+        {
+            var foundUser = Users.FirstOrDefault(u => u.UserName == user.UserName && u.Password == user.Password);
+            if (foundUser == null)
+            {
 
-        //    var tokenDescriptor = new SecurityTokenDescriptor
-        //    {
-        //        Subject = new ClaimsIdentity(claims),
-        //        Expires = DateTime.UtcNow.AddDays(1),
-        //        SigningCredentials = new SigningCredentials(
-        //            new SymmetricSecurityKey(key), 
-        //            SecurityAlgorithms.HmacSha256Signature)
-        //    };
+                return BadRequest(new { message = "User name or password invalid" });
+            }
 
-        //    var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var claims = new Claim[]
+            {
+                new Claim("id",foundUser.Id.ToString()),
+                new Claim(ClaimTypes.Role,"admin")
+            };
 
-        //    var returnUser = new User
-        //    {
-        //        Id = foundUser.Id,
-        //        UserName = foundUser.UserName,
-        //        FirstName = foundUser.FirstName,
-        //        LastName = foundUser.LastName,
-        //        GenderType = foundUser.GenderType,
-        //        PhoneNumber = foundUser.PhoneNumber,
-        //        Token = tokenHandler.WriteToken(securityToken)
-        //    };
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddDays(1),
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature)
+            };
 
-        //    return Ok(returnUser);
-        //}
+            var securityToken = tokenHandler.CreateToken(tokenDescriptor);
+
+            var returnUser = new User
+            {
+                Id = foundUser.Id,
+                UserName = foundUser.UserName,
+                FirstName = foundUser.FirstName,
+                LastName = foundUser.LastName,
+                GenderType = foundUser.GenderType,
+                PhoneNumber = foundUser.PhoneNumber,
+                Token = tokenHandler.WriteToken(securityToken)
+            };
+
+            return Ok(returnUser);
+        }*/
 
 
         [HttpPost (nameof(CreateLicense))]

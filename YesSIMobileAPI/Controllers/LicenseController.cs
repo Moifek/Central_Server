@@ -55,17 +55,6 @@ namespace YesSIMobileAPI.Controllers
             }
         }
 
-        /* [HttpGet]
-         [Route("List4")]
-         public async Task<ICollection<Service.AdmUser>> Get4(string email, string name)
-         {
-             var x = new Service.Client("https://192.168.1.119:5001/", new HttpClient());
-             return await x.LoginAsync(email, name);
-
-         }*/
-
-
-
         [HttpGet]
         [Route("GetHasLicense")]
         [Produces("application/json")]

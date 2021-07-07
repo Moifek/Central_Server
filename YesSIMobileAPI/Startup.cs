@@ -55,16 +55,14 @@ namespace YesSIMobileAPI
                    ValidateLifetime = true,
                    ValidateIssuerSigningKey = true,
 
-                   ValidIssuer = "http://0.0.0.0:2000",
-                   ValidAudience = "http://0.0.0.0:2000",
-                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("KeyForSignInSecret@1234"))
+                   ValidIssuer = Configuration["Jwt:Issuer"],
+                   ValidAudience = Configuration["Jwt:Issuer"],
+                   IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                };
            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-
-            //services.AddScoped<IActionsData, MockActionsData>();
             services.AddScoped<IAdmLicenseData, MockAdmLiceseData>();
             services.AddScoped<IAdmWebData, MockWebApi>();
 

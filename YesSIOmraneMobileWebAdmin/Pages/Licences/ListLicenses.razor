@@ -1,6 +1,7 @@
 ﻿@using YesSIMobileModels.Models
 @page "/List"
 @layout  AccueilLayout
+@inherits ListLicensesBase
 
 @inject HttpClient Http
 
@@ -48,7 +49,7 @@ else
                     <td>@emp.ExpireDate</td>
                     <td>
                         <a href='/editLicense/@emp.Pkey'>Edit</a>
-                        <button class="btn"><i class="fa fa-close"></i></button>
+                        <button class="btn" @onclick="() => HandleDelete(emp.Pkey.ToString())"><i class="fa fa-close"></i></button>
                     </td>
                 </tr>
 
@@ -60,30 +61,11 @@ else
 
 @code{
 
-    AdmLicense[] List2 = { };
-
     HttpClient Client = new();
-    protected override async Task OnInitializedAsync()
+    protected void HandleDelete(string pkey)
     {
-        //List2 = await Client.GetFromJsonAsync<AdmLicense[]>("http://192.168.1.103:5000/WebApi/GetLicenseList");
-        //List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://192.168.1.8:5001/WebApi/GetLicenseList");
-        List2 = await Client.GetFromJsonAsync<AdmLicense[]>("https://192.168.100.32:5001/WebApi/GetLicenseList");
-
-
+        Client.GetAsync(Const.URL + "DeleteLicense?id=" + pkey);
+        NAV.NavigateTo("/List", true);
     }
 
 }
-
-@*@functions {
-
-        IEnumerable<AdmLicense> List2 = new List<AdmLicense>();
-
-
-        AdmLicense[] List1;
-        protected override async Task OnInitializedAsync()
-        {
-            List1 = await Http.GetFromJsonAsync<AdmLicense[]>
-            ("https://192.168.1.103:5001/WebApi/GetLicenseList");
-
-        }
-    }*@  

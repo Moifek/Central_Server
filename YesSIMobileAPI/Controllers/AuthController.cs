@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace YesSIMobileAPI.Controllers
 {
@@ -17,9 +18,11 @@ namespace YesSIMobileAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAdmLicenseData _admLicenseData;
-        public AuthController(IAdmLicenseData _admLicenseData)
+        private IConfiguration _config;
+        public AuthController(IAdmLicenseData _admLicenseData, IConfiguration _config)
         {
             this._admLicenseData = _admLicenseData;
+            this._config = _config;
         }
 
         [HttpPost, Route("login")]
@@ -42,18 +45,18 @@ namespace YesSIMobileAPI.Controllers
 
                 if (verif != null)
                 {
-                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("KeyForSignInSecret@1234"));
+                    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
                     var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                     var tokeOptions = new JwtSecurityToken(
-                        issuer: "http://0.0.0.0:2000",
-                        audience: "http://0.0.0.0:2000",
-                        claims: new List<Claim>(),
-                        expires: DateTime.Now.AddMinutes(480),
+                        issuer: _config["Jwt:Issuer"],
+                        audience: _config["Jwt:Issuer"],
+                        null,
+                        expires: DateTime.Now.AddMinutes(1400),
                         signingCredentials: signinCredentials
                     );
 
-                    string[] info = { "test", "test" };
+                    string[] info = { "test", "test" }; // IP + Mac Adress in table session
 
                     var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
                     Guid? SessionPkey = _admLicenseData.AddSession(tokenString, verif, info, pkey).Result;

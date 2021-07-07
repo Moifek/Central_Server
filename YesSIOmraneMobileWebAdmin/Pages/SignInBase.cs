@@ -24,7 +24,7 @@ namespace YesSIOmraneMobileWebAdmin.Pages
         [Inject]
         protected NavigationManager NAV { get; set; }
 
-        protected LoginUser LoginUser { get; set; } = new("Https://192.168.100.32:5001/");
+        protected LoginUser LoginUser { get; set; } = new("Https://192.168.10.112:5001/");
         
         public  AuthentificatedUser auth = new AuthentificatedUser() ;
        public  bool errorMessage = false;
@@ -70,9 +70,9 @@ namespace YesSIOmraneMobileWebAdmin.Pages
                            await _session.SetItemAsStringAsync("role", auth.Role);
 
 
-
-                    NAV.NavigateTo("/List");
                     Console.WriteLine("reach");
+                    NAV.NavigateTo("/List");
+                   
 
                 }
                 else
@@ -85,7 +85,7 @@ namespace YesSIOmraneMobileWebAdmin.Pages
             {
                 errorMessage = true;
                 Console.WriteLine("api problem",e);
-                Console.WriteLine(errorMessage);
+                Console.WriteLine(e);
 
             }
             

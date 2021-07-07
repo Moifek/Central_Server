@@ -156,18 +156,6 @@ namespace YesSIMobileAPI.API
                 return JsonConvert.DeserializeObject<AdmUser>(response.Content);
             }
         }
-        //public string PostGeneratePasswordResetToken(string url, string email)
-        //{
-        //    this.Client = new RestClient(url + "?email=" + email);
-        //    var response = Client.Execute<string>(new RestRequest());
-
-        //    if (response.Content == "") { return null; }
-
-        //    else
-        //    {
-        //        return JsonConvert.DeserializeObject<string>(response.Content);
-        //    }
-        //}
         public async Task<HttpStatusCode> PostSerializedProspections(string url, AddProspectionModel Prospections)
 
         {

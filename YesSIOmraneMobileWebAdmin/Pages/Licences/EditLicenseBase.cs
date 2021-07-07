@@ -14,19 +14,23 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Licences
         [Inject]
         public NavigationManager NAV { get; set; }
 
+        protected Constants Const { get; set; } = new();
+
         [Parameter]
         public string LicenseID { get; set; }
         public AdmLicense License { get; set; } = new AdmLicense();
 
-        private ApiCaller Api { get; set; } = new("Https://192.168.1.8:5001/");
+        private ApiCaller Api { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            License = await Api.GetSpecificLicense(LicenseID, "WebApi/GetSpecificLicense");
+            Api = new ApiCaller(Const.URL);
+            License = await Api.GetSpecificLicense(LicenseID, "GetSpecificLicense");
         }
         protected async Task UpdateEmployee()
         {
-            await Api.UpdateLicense(License, "WebApi/UpdateLicense");
+            Api = new ApiCaller(Const.URL);
+            await Api.UpdateLicense(License, "UpdateLicense");
             NAV.NavigateTo("/List",false);
         }
         void cancel()

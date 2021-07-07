@@ -30,6 +30,10 @@ namespace YesSIOmraneMobileWebAdmin.API
             var response = await _HttpClient.SendAsync(_Request);
             if (response.IsSuccessStatusCode)
             {
+                if (response.Content.ToString() == "Admin E-mail not found or bad request")
+                {
+                    return null;
+                }
                 return response;
             }
             else
@@ -40,6 +44,12 @@ namespace YesSIOmraneMobileWebAdmin.API
             //_Request.Content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
 
 
+        }
+
+        public async Task<AdmLicense[]> GetLicenseList(string request)
+        {
+            string _Request = _HttpClient.BaseAddress + request;
+            return await _HttpClient.GetFromJsonAsync<AdmLicense[]>(_Request);
         }
 
         public async Task<AdmLicense> GetSpecificLicense(string pkey, string request)

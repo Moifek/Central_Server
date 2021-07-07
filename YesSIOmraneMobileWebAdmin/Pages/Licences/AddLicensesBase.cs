@@ -15,11 +15,12 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Licences
     {
         protected ConfirmBase ErrorMsg { get; set; }
 
-        protected AdmLicense[] List2 { get; set; } = { };
+        protected AdmLicense[] List2 { get; set; } = Array.Empty<AdmLicense>();
+        protected Constants Const { get; set; } = new();
 
         protected AdmLicense License { get; set; } = new();
 
-        protected ApiCaller Api = new("Https://192.168.1.8:5001/");
+        protected ApiCaller Api;
 
         [Inject]
         protected NavigationManager NAV { get; set; }
@@ -30,7 +31,8 @@ namespace YesSIOmraneMobileWebAdmin.Pages.Licences
             if(License is not null) {
                 try
                 {
-                    var query = await Api.AddLicense(License, "WebApi/CreateLicense");
+                    Api = new ApiCaller(Const.URL);
+                    var query = await Api.AddLicense(License, "CreateLicense");
                     Console.WriteLine(query.StatusCode.ToString());
                     Console.WriteLine(query);
 

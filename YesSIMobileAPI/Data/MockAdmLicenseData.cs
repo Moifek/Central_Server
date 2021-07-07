@@ -4,7 +4,6 @@ using System.Linq;
 using YesSIMobileAPI.API;
 using YesSIMobileModels.Models2;
 using YesSIMobileAPI.Models;
-using YesSIMobileAPI.Variables;
 using System.Threading.Tasks;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
@@ -205,7 +204,7 @@ namespace YesSIMobileAPI.Data
         public List<CfgTranche> GetCfgTranche(string pkey,string Id)
         {
             string url = _Context1.AdmLicenses.FirstOrDefault(a => a.Pkey == Guid.Parse(pkey)).ServerUrl;
-            return api.GetDeserializedCfgTranche(url + "GetCfgTranche"+"&Id="+Id);
+            return api.GetDeserializedCfgTranche(url + "GetCfgTranche"+"?Id="+Id);
         }
 
         public List<StkItemCategory> GetStkItemCategories(string pkey)
